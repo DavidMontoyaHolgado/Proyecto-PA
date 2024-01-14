@@ -6,17 +6,19 @@ class clsValoracion{
         int puntos;
         string opiniones[100];
         int cant;
+        int cantOp;
     public:
         clsValoracion();    
         void setValorar(int);
         void setValorar(int, string);
         int getValoracion();
-        string* getOpinion();
+        void getOpinion();
 };
 
 clsValoracion::clsValoracion(){
     puntos = 0;
     cant = 0;
+    cantOp = 0;
 }
 
 void clsValoracion::setValorar(int estrellas){
@@ -27,12 +29,15 @@ void clsValoracion::setValorar(int estrellas, string valorar){
     puntos += estrellas;
     opiniones[cant] = valorar;
     cant++;
+    cantOp++;
 }
 
 int clsValoracion::getValoracion(){
     return (cant > 0) ? (puntos / cant) : 0;
     }
 
-string* clsValoracion::getOpinion(){
-    return opiniones;
+void clsValoracion::getOpinion(){
+    for(int i = 0; i < cantOp; i++){
+        cout<<opiniones[i]<<endl;
+    }
 }
