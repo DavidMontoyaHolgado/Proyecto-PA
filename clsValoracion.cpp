@@ -9,8 +9,8 @@ class clsValoracion{
     public:
         clsValoracion();    
         void setValorar(int);
-        int getValorar();
-        void darOpinion(string);
+        void setValorar(int, string);
+        int getValoracion();
         string* getOpinion();
 };
 
@@ -23,13 +23,16 @@ void clsValoracion::setValorar(int estrellas){
     puntos += estrellas;
     cant++;}
 
-int clsValoracion::getValorar(){
+void clsValoracion::setValorar(int estrellas, string valorar){
+    puntos += estrellas;
+    opiniones[cant] = valorar;
+    cant++;
+}
+
+int clsValoracion::getValoracion(){
     return (cant > 0) ? (puntos / cant) : 0;
     }
 
 string* clsValoracion::getOpinion(){
     return opiniones;
 }
-
-void clsValoracion::darOpinion(string opinion){
-    opiniones[cant] = opinion;}
