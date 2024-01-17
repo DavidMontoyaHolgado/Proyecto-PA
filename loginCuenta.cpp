@@ -4,7 +4,7 @@ using namespace std;
  int n=0;
   string A[100]; //= {"@unjbg", "@gmail","@hotmail","@live","@crome" , "@patita"};
     //const int n = sizeof(A) / sizeof(A[0]);
- 
+   string B[100]; 
  
 
 class loginCuenta{
@@ -15,7 +15,7 @@ class loginCuenta{
 	public:
 	   loginCuenta(string,string,string);
 	   void crearCu(string *A, int n,string correo);
-	   void iniciarSe();
+	   void iniciarSe(string *B,int n,string clave);
 	   void cerrarSe();
 };
 
@@ -45,7 +45,7 @@ void loginCuenta::crearCu(string *A,int n,string correo){
 	
    
    if(pos>0){
-   	cout<<"El correo "<<correo<<" ya existe "<<pos<<endl;
+   	cout<<"El correo ["<<correo<<"] ya existe "<<pos<<endl;
    }else{
    	
    	//cout<<"El correo "<<correo<<" no se encuentra creada."<<endl;
@@ -56,14 +56,53 @@ void loginCuenta::crearCu(string *A,int n,string correo){
    if(cen==1){
    	 
    	 A[n]=correo;
+   	 B[n]=clave;
    	n++;  
    }
+   
+   
+	
+}
+
+void loginCuenta::iniciarSe(string *B, int n,string clave){
+	
+	int pos=0;
+	int i=0;
+
+	
+	while(i<n and B[i]!=clave){
+		
+		i=i+1;
+	}
+	
+	if(i<=n){
+		pos=i+1;
+	}else{
+		pos=-1;
+	}
+	
+   
+   if(pos>0){
+   	
+   	cout<<"Contraseña ["<<clave<<"] corecta "<<pos<<endl;
+   	
+   }else{
+   	
+   	cout<<"La contraseña  ["<<clave<<"] no coinside"<<endl;
+   
+   }
+   
+	
+	
+	
 	
 }
 
 int main(){
 	
 	string nom,correo,clave;
+	
+	
 	cout<<"nombre: ";
 	cin>>nom;
 	cout<<"correo: ";
@@ -77,7 +116,10 @@ int main(){
 	
 	for(int i=0;i<=n;i++){
 		cout<<A[i]<<endl;
+		cout<<B[i]<<endl;
 	}
+	
+	cuenta.iniciarSe(B,n,clave);
 	
 	
 	return 0;
