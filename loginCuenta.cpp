@@ -1,11 +1,24 @@
+
 #include<bits/stdc++.h>
+#include<string.h>
+
+#define USER "alex"
+#define PASS "gaaa"
+
 using namespace std;
  
- int n=0;
-  string A[100]; //= {"@unjbg", "@gmail","@hotmail","@live","@crome" , "@patita"};
-    //const int n = sizeof(A) / sizeof(A[0]);
-   string B[100]; 
+ //const int n=0;
+ // string A[100]; 
+  // string B[100];
  
+ 
+ /*string A[6]= {"@unjbg", "@gmail","@hotmail","@live","@crome" , "@patita"};
+ string B[6]={"1234","456","789","abc","asd","159"};
+    const int n = sizeof(A) / sizeof(A[0]);
+    const int m = sizeof(B) / sizeof(B[0]);*/
+    
+    
+
 
 class loginCuenta{
 	private:
@@ -15,7 +28,7 @@ class loginCuenta{
 	public:
 	   loginCuenta(string,string,string);
 	   void crearCu(string *A, int n,string correo);
-	   void iniciarSe(string *B,int n,string clave);
+	   void iniciarSe(string nombre,string correo,string clave);
 	   void cerrarSe();
 };
 
@@ -28,100 +41,83 @@ loginCuenta::loginCuenta(string _nombres, string _correo, string _clave){
 
 void loginCuenta::crearCu(string *A,int n,string correo){
 	
-	int pos=0;
-	int i=0;
-	bool cen=0;
+       int pos=0;
+	   int i=0;
 	
 	while(i<n and A[i]!=correo){
 		
 		i=i+1;
 	}
 	
-	if(i<n){
+	if(i>n or A[i]==correo){
 		pos=i+1;
 	}else{
-		pos=-1;
+		pos=-i-1;
 	}
-	
-   
-   if(pos>0){
-   	cout<<"El correo ["<<correo<<"] ya existe "<<pos<<endl;
-   }else{
-   	
-   	//cout<<"El correo "<<correo<<" no se encuentra creada."<<endl;
-   	cen=1;
-   }
-   
-   
-   if(cen==1){
-   	 
-   	 A[n]=correo;
-   	 B[n]=clave;
-   	n++;  
-   }
-   
-   
-	
-}
 
-void loginCuenta::iniciarSe(string *B, int n,string clave){
-	
-	int pos=0;
-	int i=0;
 
-	
-	while(i<n and B[i]!=clave){
+	if(pos>0){
+    	
+    	cout<<"El correo  "<<correo<<" ya existe "<<pos<<endl;
+	}else{
 		
-		i=i+1;
+		
+		cout<<"Cuenta creada exitosamente"<<endl;
 	}
-	
-	if(i<=n){
-		pos=i+1;
-	}else{
-		pos=-1;
-	}
-	
-   
-   if(pos>0){
-   	
-   	cout<<"Contraseña ["<<clave<<"] corecta "<<pos<<endl;
-   	
-   }else{
-   	
-   	cout<<"La contraseña  ["<<clave<<"] no coinside"<<endl;
-   
-   }
-   
-	
-	
 	
 	
 }
+
+/*void loginCuenta::iniciarSe(string nombre,string correo, string clave){
+	
+      if(correo == USER and clave == PASS){
+		
+		cout<<" Bienvenido al sistema "<<endl;
+	}else{
+		cout<<"El Correo y/o la clave son incorrectas "<<endl;
+	}
+	
+	
+}*/
 
 int main(){
 	
-	string nom,correo,clave;
+	 string A[6]= {"@unjbg", "@gmail","@hotmail","@live","@crome" , "@patita"};
+     string B[6]={"1234","456","789","abc","asd","159"};
+     const int n = sizeof(A) / sizeof(A[0]);
+     const int m = sizeof(B) / sizeof(B[0]);
+    
 	
+	
+	string nombre,correo,clave;
+	
+	loginCuenta cuenta(nombre,correo,clave);
 	
 	cout<<"nombre: ";
-	cin>>nom;
+	cin>>nombre;
 	cout<<"correo: ";
 	cin>>correo;
 	cout<<"clave : ";
 	cin>>clave;
 	
+   //  cuenta.iniciarSe(nombre,correo,clave);
 	
-	loginCuenta cuenta(nom,correo,clave); 
-	cuenta.crearCu(A,n,correo);
-	
-	for(int i=0;i<=n;i++){
-		cout<<A[i]<<endl;
-		cout<<B[i]<<endl;
-	}
-	
-	cuenta.iniciarSe(B,n,clave);
-	
+ cuenta.crearCu(A,n,correo);
 	
 	return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
