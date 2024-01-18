@@ -24,8 +24,6 @@ class clsProducto{
         // string getModelo () const {return modelo;};
         // string getCategoria () const {return ;};
         // string getColores    () const {return ;};
-        string setNombre();
-        float setPrecio();
         void llenarStockP();
         void llenarStockP(int, string *);
 };
