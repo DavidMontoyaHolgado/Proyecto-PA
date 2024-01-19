@@ -37,6 +37,7 @@ void Carrito::anadirCarrito(string nombre,double precio,int Npro){
 		compras[cantidad].nombre =nombre;
 		compras[cantidad].precio = precio;
 		cantidad++;
+		cout<<endl;
 		cout<<" Producto agregado al carrito: "<<nombre<<endl;
 	}else{
 		cout<<"El carrito esta lleno no se pueden agregar mas productos.  "<<endl;
@@ -63,9 +64,19 @@ void Carrito::quitarCarrito(int indice){
  void Carrito::mostrarCarrito(){
  	
  	   cout << "Carrito de compras:" << endl;
-        for (int i = 0; i < cantidad; i++) {
+ 	   cout<<endl<<"Nº\tProducto\tPrecio\tnCAntidad"<<endl;
+				 for(int j=0;j<cantidad;j++)
+				 {
+				 	cout<<j+1<<"\t" \
+				 	<<compras[j].nombre<<"\t\t" \
+				 	<<compras[j].precio<<"\t" \
+				 	<<endl;
+				 }
+				 cout<<endl;
+ 	   
+      /* for (int i = 0; i < cantidad; i++) {
             cout << "Nombre: " << compras[i].nombre << ", Precio: " << compras[i].precio << endl;
-        }
+        }*/
         cout << "Total de productos: " << cantidad << endl;
  }
 
@@ -86,9 +97,10 @@ int main(){
 	
 	for(int i=0;i<cant;i++)
 	{
-		cout<<"Producto: "<<endl;
+		cout<<endl;
+		cout<<i+1<<".Producto: ";
 		cin>>producto;
-		cout<<"precio : "<<endl;
+		cout<<"Precio : ";
 		cin>>precio;
 		carritov.anadirCarrito(producto,precio,cant);
 	}
