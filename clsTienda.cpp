@@ -7,16 +7,17 @@ class clsTienda{
     private:
         string nombreTienda;
         clsValoracion valoracion;
-        clsProducto* Productos[20];
+        clsProducto* Productos[30];
         int cant;
     public:
-        clsTienda(string nombre_Tienda);
+        clsTienda(string);
         void agregarProducto(string,float,string,string, string, string , string ,string*, int);
         void eliminarProducto(string);
+        clsValoracion getValoracion(){return valoracion;};
 };
 
-clsTienda::clsTienda(string nombre_Tienda){
-    nombreTienda = nombre_Tienda;
+clsTienda::clsTienda(string nombreT){
+    nombreTienda = nombreT;
     cant = 0;
 }
 
@@ -37,4 +38,15 @@ void clsTienda::eliminarProducto(string nombreProducto){
         }
         
     }
+}
+
+
+int main(){
+    clsTienda Tienda("JOBO");
+    string colores[] = {"Rojo", "Verde", "Amarillo", "Dorado"};
+    Tienda.agregarProducto("Galaxy 10", 5000, "De buena calidad", "Samsumg", "Galaxy 10", "Tecnologia", "Celular", colores, 4);  
+    Tienda.agregarProducto("Galaxy 8", 4500, "De buena calidad", "Samsumg", "Galaxy 8", "Tecnologia", "Celular", colores, 4);
+    Tienda.getValoracion().setValorar(3);
+    Tienda.getValoracion().setOpinar("Buena calidad, pero se tardo");
+    Tienda.eliminarProducto("Galaxy 8");
 }

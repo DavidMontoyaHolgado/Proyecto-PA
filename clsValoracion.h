@@ -10,7 +10,7 @@ class clsValoracion{
     public:
         clsValoracion();    
         void setValorar(int);
-        void setValorar(int, string);
+        void setOpinar(string);
         int getValoracion();
         void getOpinion();
 };
@@ -25,10 +25,8 @@ void clsValoracion::setValorar(int estrellas){
     puntos += estrellas;
     cant++;}
 
-void clsValoracion::setValorar(int estrellas, string valorar){
-    puntos += estrellas;
+void clsValoracion::setOpinar(string valorar){
     opiniones[cant] = valorar;
-    cant++;
     cantOp++;
 }
 
