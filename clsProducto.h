@@ -5,7 +5,7 @@ using namespace std;
 
 class clsProducto{
     private:
-        // string nombreProducto;
+        string nombreProducto;
         // float precio;
         // string descripcion;
         // string marca;
@@ -16,8 +16,8 @@ class clsProducto{
         int cantColor;
         clsDatosAdicionales Stock;
     public:
-        clsProducto(string,string, string*,int);
-        // string getNombre() const {return nombreProducto;};
+        clsProducto(string, string,string, string*,int);
+        string getNombre() const {return nombreProducto;};
         // float getPrecio() const {return precio;};
         // string getDescripcion () const {return descripcion;};
         // string getMarca () const {return marca;};        
@@ -28,8 +28,8 @@ class clsProducto{
         void llenarStockP(int, string *);
 };
 
-clsProducto::clsProducto(string _categoria, string categoria_tipo,string* coloresP, int cantColorP){
-    // nombreProducto = nombreP;
+clsProducto::clsProducto(string nombre_Producto, string _categoria, string categoria_tipo,string* coloresP, int cantColorP){
+    nombreProducto = nombre_Producto;
     // precio = precioP;
     // descripcion = descripcionP;
     // marca = marcaP;
