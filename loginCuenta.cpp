@@ -110,6 +110,14 @@ void loginCuenta::iniciarSe(string *A,string *B,int n,string correo, string clav
 	
 }
 
+void loginCuenta::cerrarSe(){
+	
+	cout<<"MUCHAS GRACIAS POR VISITARNOS "<<endl;;
+	cout<<endl;
+}
+
+
+
 int main(){
 	
 	 string A[6]= {"@unjbg", "@gmail","@hotmail","@live","@crome" , "@patita"}; //correos
@@ -125,7 +133,8 @@ int main(){
 		
 		cout<<"1. Iniciar Secion. "<<endl;
 		cout<<"2. Crear Cuenta."<<endl;
-		cout<<"3. Salir de la pagina."<<endl;
+		cout<<"3. Cerrar secion"<<endl;
+		cout<<"4.salir de la pagina."<<endl;
 		cout<<endl;
 		cout<<"ingrese la opcion: "; cin>>opc;
 		cout<<endl;
@@ -158,11 +167,18 @@ int main(){
 			  	
 			  	break;
 			  case	3:
+			  	cout<<endl;
+			  	cuenta.cerrarSe();
+	
+			  	
 			  	break;
+			  	
+			  case 4:
+			  break;	
 			
 		}
 		
-	}while(opc!=3);	
+	}while(opc!=4);	
     
 	
 	
