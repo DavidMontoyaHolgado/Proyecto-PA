@@ -6,6 +6,10 @@ using namespace std;
 
 void agregarUsuario(string, string, string, int, int);
 int retornarID();
+string* retornarUsuarios();
+string* retornarCorreos();
+string* retornarClaves();
+int cantUsuarios();
 
 #include "user.cpp"
 #endif
