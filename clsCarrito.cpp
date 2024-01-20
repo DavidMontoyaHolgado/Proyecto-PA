@@ -17,7 +17,7 @@ class Carrito{
 		int cantidad;
 	public:	
 	 Carrito();
-	 void anadirCarrito(string,double,int);
+	 void anadirCarrito(string,double);
 	 void quitarCarrito(int);
 	 void mostrarCarrito();
 	 double calculaTotal();
@@ -32,7 +32,7 @@ Carrito::Carrito(){
    
 }
 
-void Carrito::anadirCarrito(string nombre,double precio,int Npro){
+void Carrito::anadirCarrito(string nombre,double precio){
 	
 //	if(cantidad<Npro){
 		compras[cantidad].nombre =nombre;
@@ -100,7 +100,7 @@ int main(){
 	int opc;
 	Carrito carritov;
 	
-	int cant;
+	//int cant=0;
 	
 	
 	
@@ -121,11 +121,11 @@ int main(){
 				  //cout<<"ingrese la cantidad de productos : "; cin>>cant;
 			         //for(int i=0;i<cant;i++){
 			         	 cout<<endl;
-			         	 cout<<+1<<".Producto: ";
+			         	 cout<<".Producto: ";
 			         	 cin>>producto;
 		                 cout<<"Precio : ";
 	                 	cin>>precio;
-	                  	carritov.anadirCarrito(producto,precio,cant);
+	                  	carritov.anadirCarrito(producto,precio);
 					 //}
 			          cout<<endl;
 	
