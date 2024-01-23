@@ -8,12 +8,12 @@
 using namespace std;
 
 // Declaraciones de funciones
-int cantRegistros(string);
-void agregarUsuario(string, string, string, int, int);
+int cantRegistros(string rutaTXT);
+void agregarUsuario(string nombre, string correo, string clave, int edad, int dni);
 string* retornarNombres();
 string* retornarCorreos();
 string* retornarClaves();
-void crearRegistro(string);
-void agregarRegistroCompra(int, int, int, int);
+void crearRegistro(string nombre);
+void agregarRegistroCompra(int IDuser, int IDproducto, int unidades, int gasto);
 
 #endif
