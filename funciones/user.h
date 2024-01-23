@@ -1,14 +1,19 @@
-#include <iostream>
-#include <fstream>
 #ifndef USER_H
 #define USER_H
+
+#include <iostream>
+#include <fstream>
+#include <string>
+
 using namespace std;
 
+// Declaraciones de funciones
+int cantRegistros(string);
 void agregarUsuario(string, string, string, int, int);
-string* retornarUsuarios();
+string* retornarNombres();
 string* retornarCorreos();
 string* retornarClaves();
-int cantRegistros(string);
+void crearRegistro(string);
+void agregarRegistroCompra(int, int, int, int);
 
-#include "user.cpp"
 #endif
