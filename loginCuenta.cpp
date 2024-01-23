@@ -106,8 +106,6 @@ void loginCuenta::iniciarSe(string *A,string *B,int n,string correo, string clav
 		cout<<"El Correo y/o la clave son incorrectas"<<endl;
 	}
 	
-	
-	
 }
 
 void loginCuenta::cerrarSe(){
