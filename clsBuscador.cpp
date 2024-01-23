@@ -44,7 +44,6 @@ void Buscador::clsBuscador(string *A,int n, string tienda){
 		cout<<"No se encontro dicha tienda"<<endl;
 	}
 	
-	
 }
 
 
