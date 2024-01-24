@@ -1,22 +1,13 @@
-<<<<<<< HEAD
 #include <iostream>
-#include<string.h>
 #include <fstream>
-#include <string>
-=======
->>>>>>> edfa07e4be6078ecf2ea5d39cdcbfbb00f9de9ad
 #include "user.h"
 #include <string>
 
 void agregarUsuario(string nombre, string correo, string clave, int edad, int dni){
     ofstream archivo;
-<<<<<<< HEAD
-    archivo.open(ruta, ios::app);
-   int n;
-=======
     archivo.open("../baseDatos/usuarios.txt", ios::app);
     int n;
->>>>>>> edfa07e4be6078ecf2ea5d39cdcbfbb00f9de9ad
+
     if(!archivo.is_open()){
         cerr<<"Error: No se pudo abrir el archivo"<<endl;
     }
@@ -77,13 +68,13 @@ int cantRemoveC(int idCategoria){
     return cant;
 }
 
-string* retornarNombres(){
+string* nombres(){
     ifstream archivo;
     string texto;
     int i=0;
     int j = 0;
     int k = 0;
-    string* nombres = new string[100];
+    string* _nombres = new string[100];
     archivo.open("../baseDatos/usuarios.txt");
     if(!archivo.is_open()){
         cerr<<"Error: No se pudo abrir el archivo"<<endl;
@@ -93,20 +84,20 @@ string* retornarNombres(){
         i = texto.find("(");
         i++;
         j = texto.find(")", i);
-        nombres[k] = texto.substr(i,j - i);
+        _nombres[k] = texto.substr(i,j - i);
         k++;
     }
     archivo.close();
-    return nombres;
+    return _nombres;
 }
 
-string* retornarCorreos(){
+string* correos(){
     ifstream archivo;
     string texto;
     int i = 0;
     int j = 0;
      int k = 0;
-    string* correos = new string [100];
+    string* _correos = new string [100];
     archivo.open("../baseDatos/usuarios.txt");
     if(!archivo.is_open()){
         cerr<<"Error: No se pudo abrir el archivo"<<endl;
@@ -116,20 +107,20 @@ string* retornarCorreos(){
         i = texto.find(")");
         i+=2;
         j = texto.find(" ",i);
-        correos[k] = texto.substr(i,j-i);
+        _correos[k] = texto.substr(i,j-i);
         k++;
     }
     archivo.close();
-    return correos;
+    return _correos;
 }
 
-string* retornarClaves(){
+string* claves(){
     ifstream archivo;
     string texto;
     int i = 0;
     int j = 0;
     int k = 0;
-    string* claves = new string [100];
+    string* Claves = new string [100];
     archivo.open("../baseDatos/usuarios.txt");
     if(!archivo.is_open()){
         cerr<<"Error: No se pudo abrir el archivo"<<endl;
@@ -145,10 +136,8 @@ string* retornarClaves(){
         k++;
     }
     archivo.close();
-    return claves;
+    return Claves;
 }   
-<<<<<<< HEAD
-=======
 
 void crearRegistro(string nombre){
     string id = to_string(cantRegistros("../baseDatos/usuarios.txt"));
@@ -193,4 +182,3 @@ void agregarRegistroCompra(int IDuser, int IDproducto, int unidades, int gasto){
     archivo2<<IDuser<<" "<<IDproducto<<" "<<unidades<<" "<<gasto<<endl;
     archivo2.close();
 }
->>>>>>> edfa07e4be6078ecf2ea5d39cdcbfbb00f9de9ad
