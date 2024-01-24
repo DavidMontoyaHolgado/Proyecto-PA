@@ -10,7 +10,7 @@ class loginCuenta{
 	public:
 	   loginCuenta();
 	   void crearCu(string nombre, string apellido, string correo, string clave, int edad, int identificacion);
-	   void iniciarSe(int n,string correo,string clave);
+	   void iniciarSe(string correo,string clave);
 	   void cerrarSe();
 };
 

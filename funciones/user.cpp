@@ -3,7 +3,7 @@
 #include "user.h"
 #include <string>
 
-void agregarUsuario(string nombre, string correo, string clave, int edad, int dni){
+void agregarUsuario(string nombre,string apellido, string correo, string clave, int edad, int dni){
     ofstream archivo;
     archivo.open("../baseDatos/usuarios.txt", ios::app);
     int n;
@@ -11,7 +11,7 @@ void agregarUsuario(string nombre, string correo, string clave, int edad, int dn
     if(!archivo.is_open()){
         cerr<<"Error: No se pudo abrir el archivo"<<endl;
     }
-    archivo<<cantRegistros("../baseDatos/usuarios.txt") + 1<<" ("<<nombre<<") "<<correo<<" "<<clave<<" "<<edad<<" "<<dni<<endl;
+    archivo<<cantRegistros("../baseDatos/usuarios.txt") + 1<<" ("<<nombre<<" "<<apellido<<") "<<correo<<" "<<clave<<" "<<edad<<" "<<dni<<endl;
     archivo.close();
 }
 
@@ -132,7 +132,7 @@ string* claves(){
         i = texto.find(" ",i);
         i++;
         j = texto.find(" ",i);
-        claves[k] = texto.substr(i, j - i);
+        Claves[k] = texto.substr(i, j - i);
         k++;
     }
     archivo.close();
@@ -141,6 +141,14 @@ string* claves(){
 
 void crearRegistro(string nombre){
     string id = to_string(cantRegistros("../baseDatos/usuarios.txt"));
+	int pos;
+	for(int i= 0; i < nombre.length();i++){
+		if(nombre[i] == ' '){
+			pos = nombre.find(" ");
+			nombre = nombre.substr(0,pos);
+			break;
+		}
+	}
     string ruta = "../baseDatos/registroDeCompra/" + nombre + "_" + id + ".txt";
     ofstream archivo(ruta, ios::out);
     if(!archivo.is_open()){

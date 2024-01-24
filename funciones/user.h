@@ -11,7 +11,7 @@ using namespace std;
 int cantRegistros(string rutaTXT);
 int cantRemoveG();
 int cantRemoveC(int idCategoria);
-void agregarUsuario(string nombre, string correo, string clave, int edad, int dni);
+void agregarUsuario(string nombre,string apellido, string correo, string clave, int edad, int dni);
 string* nombres();
 string* correos();
 string* claves();
