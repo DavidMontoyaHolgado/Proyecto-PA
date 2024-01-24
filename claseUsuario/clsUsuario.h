@@ -1,3 +1,5 @@
+#ifndef CLSUSUARIO_H
+#define CLSUSUARIO_H
 #include <iostream>
 using namespace std;
 
@@ -12,3 +14,5 @@ class clsUsuario{
         void guardarProducto(string);
         void comprarProducto(string);
 };
+
+#endif
