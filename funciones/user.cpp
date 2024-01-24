@@ -29,6 +29,24 @@ int cantRegistros(string rutaTXT){
     return cant;
 }
 
+int cantRemoveG(){
+    string ruta =  "../baseDatos/inventario/incremento.txt";
+    string* arreglo = new string[8];
+    ifstream  archivo(ruta,ios::in);
+    if (!archivo.is_open()) {
+        cout << "Error opening file: "<<endl;
+        return 0; 
+    }
+    //Guardamos el .txt en el arreglo
+    int i = 0;
+    while(getline(archivo,arreglo[i])){
+        i++;
+    }
+    archivo.close();
+    int cant = stoi(arreglo[0].substr(2, arreglo[0].find(" ",2)));
+    return cant;
+}
+
 string* retornarNombres(){
     ifstream archivo;
     string texto;
