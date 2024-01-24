@@ -1,4 +1,5 @@
 #include <iostream>
+#include<string.h>
 #include <fstream>
 #include <string>
 #include "user.h"
@@ -9,7 +10,7 @@ const string ruta = "baseDatos/usuario.txt";
 void agregarUsuario(string nombre, string correo, string clave, int edad, int dni){
     ofstream archivo;
     archivo.open(ruta, ios::app);
-    int n;
+   int n;
     if(!archivo.is_open()){
         cerr<<"Error: No se pudo abrir el archivo"<<ruta<<endl;
     }

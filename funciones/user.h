@@ -10,5 +10,8 @@ string* retornarCorreos();
 string* retornarClaves();
 int cantRegistros(string);
 
+//const string ruta = "baseDatos/usuario.txt";
+
+
 #include "user.cpp"
 #endif
