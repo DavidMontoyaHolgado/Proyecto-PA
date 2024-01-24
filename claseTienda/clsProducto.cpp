@@ -31,7 +31,7 @@ clsProducto::clsProducto(int idTienda, string nombre_Producto,float precio,strin
     if(!archivo.is_open()){
         cerr<<"Error: No se pudo abrir el archivo "<<endl;
     }
-    archivo<<ID + 1 <<" ("<<nombreProducto<<") "<<idTienda<<" "<<categoria<<" "<<categoriaTipo<<endl;
+    archivo<<ID + cantRemoveG() + 1 <<" ("<<nombreProducto<<") "<<idTienda<<" "<<categoria<<" "<<categoriaTipo<<endl;
     archivo.close();
 
     //Para el inventario por categoría
@@ -76,7 +76,7 @@ clsProducto::clsProducto(int idTienda, string nombre_Producto,float precio,strin
     ofstream archivo2(nombreCategoria, ios::app);
 
     for(int i = 0; i < cantColor; i++){
-        archivo2<<cantInventCategoria + 1<<" "<<ID + 1<<" ("<<nombre_Producto<<") "<<idTienda<<" "<<idSubCategoria<<" "<<precio<<" "<<coloresP[i]<<" "<<stock[i]<<" "<<marca<<" "<<modelo<<" ("<<descripcion<<")"<<endl;
+        archivo2<<cantInventCategoria+ cantRemoveC(idCategoria) + 1<<" "<<ID + cantRemoveG() + 1<<" ("<<nombre_Producto<<") "<<idTienda<<" "<<idSubCategoria<<" "<<precio<<" "<<coloresP[i]<<" "<<stock[i]<<" "<<marca<<" "<<modelo<<" ("<<descripcion<<")"<<endl;
     }
 }
 
@@ -100,7 +100,7 @@ clsProducto::clsProducto(int idTienda, string nombre_Producto,float precio,strin
     if(!archivo.is_open()){
         cerr<<"Error: No se pudo abrir el archivo "<<endl;
     }
-    archivo<<ID + 1 <<" ("<<nombre_Producto<<") "<<idTienda<<" "<<categoria<<" "<<categoriaTipo<<endl;
+    archivo<<ID+ cantRemoveG() + 1 <<" ("<<nombre_Producto<<") "<<idTienda<<" "<<categoria<<" "<<categoriaTipo<<endl;
     archivo.close();
 
     //Para el inventario por categoría
@@ -171,7 +171,7 @@ clsProducto::clsProducto(int idTienda, string nombre_Producto,float precio,strin
     }
     ofstream archivo2(nombreCategoria, ios::app);
     for(int i = 0; i < cantColor; i++){
-        archivo2<<cant + 1<<" "<<ID + 1<<" ("<<nombre_Producto<<") "<<idTienda<<" "<<idSubCategoria<<" "<<precio<<" "<<coloresP[i]<<" "<<tallasCadena<<" "<<stocks[i]<<" "<<marca<<" "<<modelo<<" ("<<descripcion<<")"<<endl;
+        archivo2<<cant+ cantRemoveC(idCategoria) + 1<<" "<<ID + cantRemoveG() + 1<<" ("<<nombre_Producto<<") "<<idTienda<<" "<<idSubCategoria<<" "<<precio<<" "<<coloresP[i]<<" "<<tallasCadena<<" "<<stocks[i]<<" "<<marca<<" "<<modelo<<" ("<<descripcion<<")"<<endl;
     }
 }
 

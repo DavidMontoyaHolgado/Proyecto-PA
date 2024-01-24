@@ -169,6 +169,6 @@ void clsTienda::eliminarProducto(int idProducto){
     //Sobrescribimos el archivo incremento
     ofstream archivo9("../baseDatos/inventario/incremento.txt", ios::trunc);
     for(int jj= 0; jj < 7;jj++)
-        archivo9<<incremento[jj]<<endl;
+        archivo9<<incremento[jj]<<" "<<endl;
     archivo9.close();
 }
