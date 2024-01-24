@@ -2,6 +2,10 @@
 #include "./ui_mainwindow.h"
 #include <QMenu>
 #include <QAction>
+#include <Qfile>
+#include <QTextStream>
+#include <QMessageBox>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -9,15 +13,21 @@ MainWindow::MainWindow(QWidget *parent)
 
 {
     ui->setupUi(this);
+    cargarUsuarios();
     menuCategoriasOriginal = ui->toolButtonCATEGORIAS->menu();
     connect(ui->toolButtonCATEGORIAS_Duplicado, &QToolButton::clicked, this, &MainWindow::on_toolButtonCATEGORIAS_clicked);
     connect(ui->toolButtonREGISTRAR_Duplicado, &QToolButton::clicked, this, &MainWindow::on_toolButtonREGISTRAR_clicked);
+
+    connect(ui->pushButtonINICIARSESION_LOG, &QPushButton::clicked, this, &MainWindow::on_pushButtonINICIARSESION_clicked);
+    connect(ui->pushButtonCREARCUENTA_LOG, &QPushButton::clicked, this, &MainWindow::on_pushButtonCREARCUENTA_clicked);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+
 
 void MainWindow::on_pushButtonYOBO_clicked()
 {
@@ -56,16 +66,7 @@ void MainWindow::on_pushButtonYOBO_4_clicked()
 }
 
 
-void MainWindow::on_pushButtonINICIARSESION_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(3);
-}
 
-
-void MainWindow::on_pushButtonCREARCUENTA_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(4);
-}
 
 
 void MainWindow::on_pushButtonYOBO_5_clicked()
@@ -530,3 +531,51 @@ void MainWindow::on_pushButtonYOBO_6_clicked()
     ui->stackedWidget->setCurrentIndex(0);
 }
 
+void MainWindow::cargarUsuarios() {
+    QFile file("usuarios.txt");
+    if (file.open(QIODevice::ReadOnly)) {
+        QTextStream in(&file);
+        while (!in.atEnd()) {
+            QString line = in.readLine();
+            QStringList parts = line.split(",");
+            if (parts.size() == 2) {
+                usuariosRegistrados.insert(parts[0], parts[1]);
+            }
+        }
+    }
+}
+void MainWindow::registrarUsuario(const QString &usuario, const QString &contrasena) {
+    // Implementa la lógica de registro aquí
+    guardarUsuario(usuario, contrasena);
+}
+
+void MainWindow::guardarUsuario(const QString &usuario, const QString &contrasena) {
+    usuariosRegistrados.insert(usuario, contrasena);
+    QFile file("usuarios.txt");
+    if (file.open(QIODevice::Append | QIODevice::Text)) {
+        QTextStream out(&file);
+        out << usuario << "," << contrasena << "\n";
+    }
+}
+
+bool MainWindow::verificarUsuario(const QString &usuario, const QString &contrasena) {
+    return usuariosRegistrados.contains(usuario) && usuariosRegistrados[usuario] == contrasena;
+}
+
+void MainWindow::on_pushButtonINICIARSESION_clicked() {
+    QString usuario = ui->lineEditRECIBIRCORREO->text();
+    QString contrasena = ui->lineEditRECIBIRCONTRA->text();
+    if (verificarUsuario(usuario, contrasena)) {
+        // Redirige al menú principal
+        ui->stackedWidget->setCurrentIndex(0); // Asumiendo que el índice 0 es tu menú principal
+    } else {
+        QMessageBox::warning(this, "Error de inicio de sesión", "Contraseña incorrecta, vuelve a intentar.");
+    }
+}
+
+void MainWindow::on_pushButtonCREARCUENTA_clicked() {
+    QString usuario = ui->lineEditRECIBIRCORREO_USER->text();
+    QString contrasena = ui->lineEditRECIBIRCONTRA_USER->text();
+    guardarUsuario(usuario, contrasena);
+    // Puede agregar una confirmación de que la cuenta fue creada
+}

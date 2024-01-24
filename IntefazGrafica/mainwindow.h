@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QMap>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -109,6 +110,11 @@ private slots:
 
     void on_pushButtonYOBO_6_clicked();
 
+    void registrarUsuario(const QString &usuario, const QString &contrasena);
+    bool verificarUsuario(const QString &usuario, const QString &contrasena);
+    void cargarUsuarios();
+    void guardarUsuario(const QString &usuario, const QString &contrasena);
+
 private:
     Ui::MainWindow *ui;
     QAction *accionCategoria1;
@@ -127,6 +133,7 @@ private:
 
     QMenu *menuCategoriasOriginal;
     void duplicarBotones();
+    QMap<QString, QString> usuariosRegistrados;
 
 };
 #endif // MAINWINDOW_H
