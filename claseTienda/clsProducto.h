@@ -4,6 +4,8 @@
 #include <string>
 using namespace std;
 
+int cantValores(string *);
+
 class clsProducto{
     private:
         string nombreProducto;
@@ -14,8 +16,8 @@ class clsProducto{
         int cantColor;
     public:
         clsProducto(){};
-        clsProducto(int, string, float,string, string,string, int, int, string *, int, int*);
-        clsProducto(int, string, float,string, string,string, int, int, string *, int, int**,int, string*);
+        clsProducto(int, string, float,string, string,string, int, int, string *, int*);
+        clsProducto(int, string, float,string, string,string, int, int, string *, int**, string*);
 };
 
 #endif

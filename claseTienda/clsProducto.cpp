@@ -1,4 +1,3 @@
-#include <string>
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -7,9 +6,17 @@
 #include "../funciones/user.h"
 using namespace std;
 
+int cantValores(string* arreglo){
+	int cant=0;
+	while(!arreglo[cant].empty()){
+		cant++;
+	}
+    return cant;
+}
 
-clsProducto::clsProducto(int idTienda, string nombre_Producto,float precio,string descripcion,string marca, string modelo, int idCategoria, int idSubCategoria,string* coloresP, int cantColorP, int* stock){
+clsProducto::clsProducto(int idTienda, string nombre_Producto,float precio,string descripcion,string marca, string modelo, int idCategoria, int idSubCategoria,string* coloresP, int* stock){
     //Dando valora  las propiedades
+    int cantColorP = cantValores(coloresP);
     nombreProducto = nombre_Producto;
     categoria = idCategoria;
     categoriaTipo = idSubCategoria;
@@ -32,7 +39,7 @@ clsProducto::clsProducto(int idTienda, string nombre_Producto,float precio,strin
     archivo1.open("../baseDatos/Categoria.txt");
     string texto;
     int ini, fin;
-        //Nombre de la categoría
+        //Buscando el nombre de la categoría con el idCategoría
     char charId = (to_string(idCategoria))[0];
     while(getline(archivo1,texto)){
         if(texto.find(charId) != string::npos && texto.find(charId)<10){
@@ -75,8 +82,10 @@ clsProducto::clsProducto(int idTienda, string nombre_Producto,float precio,strin
 
 //EN EL CASO DE QUE EL PRODUCTO SEA ROPA
 
-clsProducto::clsProducto(int idTienda, string nombre_Producto,float precio,string descripcion,string marca, string modelo, int idCategoria, int idSubCategoria,string* coloresP, int cantColorP, int** stock, int cantTalla, string* tallas){
+clsProducto::clsProducto(int idTienda, string nombre_Producto,float precio,string descripcion,string marca, string modelo, int idCategoria, int idSubCategoria,string* coloresP, int** stock, string* tallas){
     //Dando valora  las propiedades
+    int cantColorP = cantValores(coloresP);
+    int cantTalla = cantValores(tallas);
     nombreProducto = nombre_Producto;
     categoria = idCategoria;
     categoriaTipo = idSubCategoria;
@@ -99,7 +108,7 @@ clsProducto::clsProducto(int idTienda, string nombre_Producto,float precio,strin
     archivo1.open("../baseDatos/Categoria.txt");
     string texto;
     int ini, fin;
-        //Nombre de la categoría
+        //Hallamos el nombre de la categoría a base del idCategoría
     char charId = (to_string(idCategoria))[0];
     while(getline(archivo1,texto)){
         if(texto.find(charId) != string::npos && texto.find(charId)<10){
@@ -129,10 +138,12 @@ clsProducto::clsProducto(int idTienda, string nombre_Producto,float precio,strin
         int m = 1;
         string pos;
         ifstream archivo2("../baseDatos/inventario/Ropa.txt");
+        //Comparamos 
         while(getline(archivo2,leer)){
             if(m == cant){
                 pos = leer.substr(0,leer.find(" "));
             }
+            m++;
         }
         cant = stoi(pos);
         archivo2.close();
@@ -149,7 +160,9 @@ clsProducto::clsProducto(int idTienda, string nombre_Producto,float precio,strin
             }
         }
     }
+
     string tallasCadena="";
+    //Ponemos las tallas separado por comas
     for(int i = 0; i < cantTalla;i++){
         tallasCadena += tallas[i];
         if(i < cantTalla-1){
