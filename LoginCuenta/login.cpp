@@ -1,61 +1,55 @@
 #include<iostream>
 #include "login.h"
-//#include"C:\Users\usuario\Desktop\PROYECTO DE PA\Proyecto-PA\funciones\user.h"
-//#include "C:\Users\usuario\Desktop\PROYECTO DE PA\Proyecto-PA\funciones"
+#include "../funciones/user.h"
 using namespace std;
 
-
-loginCuenta::loginCuenta(string _nombres, string _correo, string _clave){
-	
-	      nombres = _nombres;
-		  correo = _correo;
-		  clave = _clave;    
+loginCuenta::loginCuenta(string _nombres, string _apellido, string _correo, string _clave){
+	nombre = _nombres;
+	apellido = _apellido;
+	correo = _correo;
+	clave = _clave;    
 }
 
-void loginCuenta::crearCu(string *A,int n,string correo){
-	
+void loginCuenta::crearCu(string nombre, string apellido, string correo, string clave, int edad, int identificacion){
+	int n = cantRegistros("../baseDatos/usuarios.txt");
        int pos=0;
 	   int i=0;
 	
-	while(i<n and A[i]!=correo){
+	while(i<n and correos()[i]!=correo){
 		
 		i=i+1;
 	}
 	
-	if(i>n or A[i]==correo){
+	if(i>n or claves()[i]==correo){
 		pos=i+1;
 	}else{
 		pos=-i-1;
 	}
 
-
 	if(pos>0){
-    	
     	cout<<"El correo  "<<correo<<" ya existe "<<pos<<endl;
 	}else{
-		
-		
+		agregarUsuario(nombre,apellido,correo,clave,edad,identificacion);
+		crearRegistro(nombre);
 		cout<<"Cuenta creada exitosamente"<<endl;
 	}
 	
 	
 }
 
-void loginCuenta::iniciarSe(string *A,string *B,int n,string correo, string clave){
-	
-	
-	
+void loginCuenta::iniciarSe(string correo, string clave){
+	int n = cantRegistros("../baseDatos/usuarios.txt");
 	  int pos=0;
 	   int i=0;
 	   //bool cen=0;
 	  // bool cen=1;
 	
-	while(i<n and A[i]!=correo){
+	while(i<n and correos()[i]!=correo){
 		
 		i=i+1;
 	}
 	
-	if(i>n or A[i]==correo){
+	if(i>n or correos()[i]==correo){
 		pos=i+1;
 	}else{
 		pos=-i-1;
@@ -66,10 +60,11 @@ void loginCuenta::iniciarSe(string *A,string *B,int n,string correo, string clav
     	
     //	cout<<"El correo  "<<correo<<" ya existe "<<pos<<endl;
     
-         if(B[pos-1]==clave){
+         if(claves[pos-1]==clave){
          	
          	cout<<endl;
          	cout<<"Bienvenidos al sistema "<<endl;
+			
 		 }else{
 		 	
 		 	cout<<"El Correo y/o la clave son incorrectas"<<endl;
@@ -95,7 +90,7 @@ void loginCuenta::cerrarSe(){
 int main(){
 	
 	 string A[6]= {"@unjbg", "@gmail","@hotmail","@live","@crome" , "@patita"}; //correos
-     string B[6]={"1234","456","789","abc","asd","159"};  //contraseñas
+     string B[6]={"1234","456","789","abc","asd","159"};  //contraseï¿½as
      const int n = sizeof(A) / sizeof(A[0]);
      //const int m = sizeof(B) / sizeof(B[0]);
     
