@@ -10,6 +10,7 @@ using namespace std;
 // Declaraciones de funciones
 int cantRegistros(string rutaTXT);
 int cantRemoveG();
+int cantRemoveC(int idCategoria);
 void agregarUsuario(string nombre, string correo, string clave, int edad, int dni);
 string* retornarNombres();
 string* retornarCorreos();
