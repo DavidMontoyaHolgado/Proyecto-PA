@@ -1,0 +1,9 @@
+1 (PcComponentes) 20123456789
+2 (Ropa a medida) 20123456790
+3 (Electrohogar) 20123456791
+4 (La tienda del licor) 20123456792
+5 (El spa de la ciudad) 20123456793
+6 (Belleza y bienestar) 20123456794
+7 (La casa del músico) 20123456795
+8 (El lugar para tocar música) 20123456796
+9 (La joya brillante) 20123456797

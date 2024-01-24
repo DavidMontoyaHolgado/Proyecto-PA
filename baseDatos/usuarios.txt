@@ -1,0 +1,18 @@
+1 (Juan Pérez) juan@gmail.com pass123 25 12345678
+2 (María López) maria@unjbg.com securePass 30 87654321
+3 (Pedro Rodríguez) pedro@unjbg.com mySecret123 28 11122333
+4 (Ana Martínez) ana@unjbg.com userPass789 22 44443333
+5 (Carlos Sánchez) carlos@hotmail.com strongPassword 35 55556666
+6 (Laura García) laura@gmail.com 1234abc 29 99998888
+7 (Alejandro Gómez) alejandro@email.com aleRata 27 77779999
+8 (David Montoya) nuevo@hotmail.com newPass 30 98765432
+9 (Luis Ramírez) luis@gmail.com pass987 28 22221111
+10 (Lucía González) lucia@hotmail.com securePass2 31 98765432
+11 (Ricardo Soto) ricardo@email.com mySecret789 25 55554444
+12 (Elena Pérez) elena@gmail.com userPass123 23 12349876
+13 (Martín Rodríguez) martin@hotmail.com strongPass123 33 87658923
+14 (Sofia Martínez) sofia@email.com pass1234 26 65432198
+15 (Diego Gómez) diego@gmail.com password! 29 33332222
+16 (Ana María Torres) ana@email.com newPass!2 32 1111444417
+17 (Jorge David) dgmontoyah@unjbg.edu.pe qwertyuiop15 19 71470226
+18 (Daniel Mendoza) djmendozag@unjbg.edu.pe holaAmigo.16 20 72058512

@@ -1,0 +1,84 @@
+1 (Camisas Cuello Mao De Lino Para Hombre) 2 1 1
+2 (Trompeta Dorada Jinbao Jbtr300) 7 4 4
+3 (Vino Tabernero Borgoña) 4 6 5
+4 (Pantalones de Mezclilla Slim Fit) 2 1 1
+5 (Laptop HP Pavilion 15.6) 1 2 2
+6 (Kit de Maquillaje Profesional) 6 3 3
+7 (Microfono de Condensador con Soporte) 7 4 4
+8 (Horno Microondas Digital 1000W) 3 6 5
+9 (Consola de Videojuegos Xbox Series X) 4 6 5
+10 (Perfume Floral de Mujer) 6 3 3
+11 (Shorts Deportivos de Secado Rápido) 2 1 1
+12 (Smartphone Samsung Galaxy S21) 1 2 2
+13 (Set de Pinceles de Maquillaje Profesional) 6 3 3
+14 (Guitarra Acústica de Cuerdas de Acero) 7 4 4
+15 (Licor Whisky Escocés Single Malt) 4 6 5
+16 (Camiseta Manga Corta Estampada) 2 1 1
+17 (Auriculares Inalámbricos Bluetooth) 1 2 2
+18 (Set de Manicura y Pedicura) 6 3 3
+19 (Batería para Bajo Eléctrico) 7 4 4
+20 (Cafetera Programable de Acero Inoxidable) 3 6 5
+21 (Vestido de Noche Elegante) 2 1 1
+22 (Tablet Android de 10 Pulgadas) 1 2 2
+23 (Crema Hidratante Antienvejecimiento) 6 3 3
+24 (Teclado Digital para Piano) 7 4 4
+25 (Aspiradora Robot Inteligente) 3 6 5
+26 (Chaqueta de Cuero Unisex) 2 1 1
+27 (Smartwatch con Monitor de Ritmo Cardíaco) 1 2 2
+28 (Set de Brochas para Maquillaje Profesional) 6 3 3
+29 (Saxofón Alto Plateado) 7 4 4
+30 (Licuadora de Alta Potencia) 3 6 5
+31 (Zapatillas Deportivas para Correr) 2 1 1
+32 (Impresora Multifunción Wi-Fi) 1 2 2
+33 (Máscara Facial de Colágeno) 6 3 3
+34 (Guitarra Eléctrica de 6 Cuerdas) 7 4 4
+35 (Refrigerador de Doble Puerta) 3 6 5
+36 (Blusa de Encaje para Mujer) 2 1 1
+37 (Cámara Fotográfica DSLR) 1 2 2
+38 (Esponjas de Maquillaje Desechables) 6 3 3
+39 (Batería para Batería Electrónica) 7 4 4
+40 (Freidora de Aire sin Aceite) 3 6 5
+41 (Reloj de Pulsera con GPS) 2 1 1
+42 (Altavoces Bluetooth Portátiles) 1 2 2
+43 (Loción Hidratante para el Cuerpo) 6 3 3
+44 (Bajo Eléctrico de 5 Cuerdas) 7 4 4
+45 (Horno Eléctrico de Convección) 3 6 5
+46 (Traje Formal para Hombre) 2 1 1
+47 (Monitor Gaming Curvo de 27 Pulgadas) 1 2 2
+48 (Set de Baño de Lujo con Aromaterapia) 6 3 3
+49 (Flauta Travesera de Plata) 7 4 4
+50 (Batidora de Pie con Tazón de Acero Inoxidable) 3 6 5
+51 (Blazer Casual para Mujer) 2 1 1
+52 (Cámara de Seguridad con Visión Nocturna) 1 2 2
+53 (Serum Facial Antioxidante) 6 3 3
+54 (Piano Digital de 88 Teclas) 7 4 4
+55 (Lavadora de Carga Frontal) 3 6 5
+56 (Sombrero de Paja para Verano) 2 1 1
+57 (Mouse Inalámbrico Ergonómico) 1 2 2
+58 (Kit de Manicura y Pedicura Eléctrico) 6 3 3
+59 (Trombón de Vara Dorado) 7 4 4
+60 (Cafetera Espresso Automática) 3 6 5
+61 (Vestido Casual de Rayas) 2 1 1
+62 (Teclado Mecánico para Gaming) 1 2 2
+63 (Crema Reafirmante para el Rostro) 6 3 3
+64 (Violín Acústico de Tamaño Completo) 7 4 4
+65 (Secadora de Ropa con Tecnología de Vapor) 3 6 5
+66 (Camiseta de Manga Larga con Estampado) 2 1 1
+67 (Impresora 3D de Alta Resolución) 1 2 2
+68 (Espejo Iluminado para Maquillaje) 6 3 3
+69 (Batería para Batería Electrónica de Alta Gama) 7 4 4
+70 (Parrilla Eléctrica de Interior) 3 6 5
+71 (Zapatos Deportivos para Entrenamiento) 2 1 1
+72 (Monitor de Actividad y Frecuencia Cardíaca) 1 2 2
+73 (Aceite de Argán para el Cabello) 6 3 3
+74 (Guitarra Acústica de Viaje) 7 4 4
+75 (Refrigerador de Vinos de Doble Zona) 3 6 5
+76 (Reloj de Pulsera Elegante) 9 5 1
+77 (Collar de Plata con Diamantes) 9 5 2
+78 (Anillo de Oro con Piedra Preciosa) 9 5 2
+79 (Pendientes de Perlas) 9 5 2
+80 (Pulsera de Cuero con Cierre Magnético) 9 5 1
+81 (Broche de Diamantes) 9 5 2
+82 (Reloj de Bolsillo Antiguo) 9 5 1
+83 (Brazalete de Plata con Grabados) 9 5 2
+84 (Gemelos de Oro con Incrustaciones de Piedras) 9 5 3
