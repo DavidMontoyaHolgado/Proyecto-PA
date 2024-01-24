@@ -2,5 +2,5 @@
 2 (Tecnologia) laptop,celular,pantallas,accesorios,repuestos.
 3 (Belleza y Cuidados) higiene Personal,maquillaje,perfumeria,accesorios.
 4 (Instrumentos musicales) microfonos,de cuerda,de viento,de percusion,accesorios.
-6 (Joyas) relojes,joyas,otros.
 5 (otros) electrodomesticos,consolas,videojuegos,bebidasAlcoholicas.
+6 (Joyas) relojes,joyas,otros.

@@ -85,6 +85,8 @@ void clsTienda::eliminarProducto(int idProducto){
         archivo3<<arreglo[i]<<endl;
     }
     archivo3.close();
+    
+    //ELIMINAMOS DEL INVENTARIO POR CATEGORÍA
     int posDato = dato.find(")");
     posDato+=4;
     texto = "";
@@ -164,6 +166,7 @@ void clsTienda::eliminarProducto(int idProducto){
             incremento[jj] = to_string(jj) + " " + to_string(cantRemove);
         }
     }
+    //Sobrescribimos el archivo incremento
     ofstream archivo9("../baseDatos/inventario/incremento.txt", ios::trunc);
     for(int jj= 0; jj < 7;jj++)
         archivo9<<incremento[jj]<<endl;
