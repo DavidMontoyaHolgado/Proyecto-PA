@@ -1,6 +1,7 @@
 #include<iostream>
 #include "login.h"
-
+//#include"C:\Users\usuario\Desktop\PROYECTO DE PA\Proyecto-PA\funciones\user.h"
+//#include "C:\Users\usuario\Desktop\PROYECTO DE PA\Proyecto-PA\funciones"
 using namespace std;
 
 
