@@ -1,6 +1,6 @@
-1 (Camisas Cuello Mao De Lino Para Hombre) 2 1 1
-2 (Trompeta Dorada Jinbao Jbtr300) 7 4 4
-3 (Vino Tabernero Borgoña) 4 6 5
+1 (Camisas Cuello Mao De Lino Para Hombre) 2 1 1 :/imagenes/gato3.jpg,3
+2 (Trompeta Dorada Jinbao Jbtr300) 7 4 4 :/imagenes/gato2.jpg,4
+3 (Vino Tabernero Borgoña) 4 6 5 :/imagenes/gato3.jpg,3
 4 (Pantalones de Mezclilla Slim Fit) 2 1 1
 5 (Laptop HP Pavilion 15.6) 1 2 2
 6 (Kit de Maquillaje Profesional) 6 3 3

@@ -5,6 +5,11 @@
 #include <Qfile>
 #include <QTextStream>
 #include <QMessageBox>
+#include <QLabel>
+#include <QPushButton>
+#include <QPixmap>
+#include <QGridLayout>
+
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -14,9 +19,9 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     cargarUsuarios();
+    loadProducts();
     menuCategoriasOriginal = ui->toolButtonCATEGORIAS->menu();
-    connect(ui->toolButtonCATEGORIAS_Duplicado, &QToolButton::clicked, this, &MainWindow::on_toolButtonCATEGORIAS_clicked);
-    connect(ui->toolButtonREGISTRAR_Duplicado, &QToolButton::clicked, this, &MainWindow::on_toolButtonREGISTRAR_clicked);
+
 
     connect(ui->pushButtonINICIARSESION_LOG, &QPushButton::clicked, this, &MainWindow::on_pushButtonINICIARSESION_clicked);
     connect(ui->pushButtonCREARCUENTA_LOG, &QPushButton::clicked, this, &MainWindow::on_pushButtonCREARCUENTA_clicked);
@@ -27,53 +32,15 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-
 void MainWindow::on_pushButtonYOBO_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
 }
 
-
-
-void MainWindow::on_pushButtonCARRITO_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(1);
-}
-
-
-void MainWindow::on_pushButtonLOGIN_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(2);
-}
-
-
-void MainWindow::on_pushButtonYOBO_2_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(0);
-}
-
-
-void MainWindow::on_pushButtonYOBO_3_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(0);
-}
-
-
-void MainWindow::on_pushButtonYOBO_4_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(0);
-}
-
-
-
-
-
 void MainWindow::on_pushButtonYOBO_5_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
 }
-
 
 void MainWindow::on_toolButtonCATEGORIAS_clicked()
 {
@@ -109,8 +76,6 @@ void MainWindow::on_toolButtonCATEGORIAS_clicked()
     QAction *accionCat1Opcion4 = menuCategoria1->addAction("Polo");
     QAction *accionCat1Opcion5 = menuCategoria1->addAction("Polera");
     QAction *accionCat1Opcion6 = menuCategoria1->addAction("Chompa");
-
-
 
     // Agrega acciones al menú desplegable de Categoria 2
     QAction *accionCat2Opcion1 = menuCategoria2->addAction("Laptop");
@@ -154,9 +119,6 @@ void MainWindow::on_toolButtonCATEGORIAS_clicked()
     QAction *accionCat6Opcion2 = menuCategoria6->addAction("Joyas");
     //Agregadas prueba de ropa
     QAction *accionCat6Opcion3 = menuCategoria6->addAction("Otros");
-
-
-
 
     // Conecta las acciones a los slots correspondientes
     connect(accionCategoria1, &QAction::triggered, this, &MainWindow::categoria1Seleccionada);
@@ -526,10 +488,6 @@ void MainWindow::on_duplicarBotonesButton_clicked()
     duplicarBotones();
 }
 
-void MainWindow::on_pushButtonYOBO_6_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(0);
-}
 
 void MainWindow::cargarUsuarios() {
     QFile file("usuarios.txt");
@@ -579,3 +537,81 @@ void MainWindow::on_pushButtonCREARCUENTA_clicked() {
     guardarUsuario(usuario, contrasena);
     // Puede agregar una confirmación de que la cuenta fue creada
 }
+
+
+void MainWindow::loadProducts() {
+    QFile file("C:/Users/ASd/Desktop/MenuPrincipal/build-PaginaPrincipal-Desktop_Qt_6_6_1_MinGW_64_bit-Debug/productos.txt"); // Asegúrate de que la ruta sea correcta
+
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return;
+
+    QTextStream in(&file);
+    int row = 0;
+    while (!in.atEnd()) {
+        QString line = in.readLine();
+        QStringList productDetails;
+        int lastIndex = 0;
+        bool insideParenthesis = false;
+
+        // Dividir la línea en partes, manejando los paréntesis
+        for (int i = 0; i < line.length(); ++i) {
+            if (line[i] == '(') insideParenthesis = true;
+            else if (line[i] == ')') insideParenthesis = false;
+            else if (line[i] == ' ' && !insideParenthesis) {
+                productDetails.append(line.mid(lastIndex, i - lastIndex).trimmed());
+                lastIndex = i + 1;
+            }
+        }
+        productDetails.append(line.mid(lastIndex).trimmed()); // Añade la última parte
+
+        if (productDetails.size() >= 6) {
+            QString productName = productDetails[1].mid(1, productDetails[1].length() - 2);
+            QString productDescription = productDetails[0];
+            QString imagePath = productDetails[5];
+            QString productPrice = productDetails[2];
+            // Esta línea debe ir después de haber declarado y asignado valores a productName e imagePath
+            productImageMap[productName] = imagePath;
+
+            QLabel *labelName = new QLabel(productName);
+            QLabel *labelDescription = new QLabel(productDescription);
+            QLabel *labelImage = new QLabel();
+            QPixmap pix(imagePath);
+            labelImage->setPixmap(pix.scaled(100, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+
+            QPushButton *buttonAddToCart = new QPushButton("Ver Producto");
+            QSpinBox *spinBoxCantidad = new QSpinBox();
+            spinBoxCantidad->setRange(1, 99); // Establece el rango de la cantidad
+            spinBoxCantidad->setValue(1); // Valor inicial del spinBox
+
+            // Guardar la asociación en el mapa
+            buttonToSpinBoxMap[buttonAddToCart] = spinBoxCantidad;
+            QLabel *labelPrice = new QLabel("Precio unitario: " + productPrice);
+
+            productPriceMap[productName] = productPrice.toInt();
+
+            // Almacenar el nombre del producto en el botón para su uso posterior
+            buttonAddToCart->setProperty("productName", productName);
+
+            // Conectar el botón a su slot
+            connect(buttonAddToCart, &QPushButton::clicked, this, &MainWindow::on_pushButtonAgregarCarrito_clicked);
+
+            QGridLayout *layout = qobject_cast<QGridLayout*>(ui->gridLayoutListaProductos);
+            if (layout) {
+                layout->addWidget(labelName, row, 0);
+                layout->addWidget(labelDescription, row, 1);
+                layout->addWidget(labelImage, row, 2);
+                //layout->addWidget(spinBoxCantidad, row, 3); // Añadir el QSpinBox al layout
+                layout->addWidget(buttonAddToCart, row, 3);
+                //layout->addWidget(labelPrice, row, 5);                // Asegúrate de que la columna sea la correcta
+            }
+            row++;
+        }
+    }
+    file.close();
+}
+
+void MainWindow::on_pushButtonAgregarCarrito_clicked()
+{
+
+}
+
