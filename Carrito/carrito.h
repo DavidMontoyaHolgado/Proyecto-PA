@@ -1,26 +1,22 @@
+#ifndef CARRITO_H
+#define CARRITO_H
 #include<iostream>
 #include<fstream>
 
 using namespace std; 
 
-class Carrito{
+class clsCarrito{
 	private:
-		struct Producto{
-			string nombre;
-			double precio;
-	          int NPro;
-		};
-		
-		// const int c=100;
-		 Producto compras[100];
-		int cantidad;
+		int idUser;
 	public:	
-	 Carrito();
-	 void anadirCarrito(string,double);
-	 void quitarCarrito(int);
-	 void mostrarCarrito();
-	 double calculaTotal();
-	 int getCompra();
-	 int getCantidad();		
+		clsCarrito(int idUsuario);
+		void anadirCarrito(int IDproducto,int cantidad,float precio);
+		void quitarCarrito(int posCarrito);
+		void mostrarCarrito();
+		double calculaTotal();
+		int getCompra();
+		int getCantidad();		
 };
+
+#endif
 
