@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+    <header>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand mx-auto" href="#">YOBO</a>
+                <div class="search-bar mx-auto">
+                    <input class="form-control search-input" type="search" placeholder="Buscar" aria-label="Buscar">
+                    <button class="btn btn-success search-btn" type="submit">Buscar</button>
+                    <button class="btn btn-warning cart-btn" onclick="addToCart('Producto 1')">Añadir al Carrito</button>
+                </div>
+                <button class="btn btn-outline-light login-btn mx-auto" type="button">Iniciar Sesión</button>
+            </div>
+        </nav>
+        
+    </header>
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle del Producto - YOBO</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Aquí irá la imagen del producto -->
+                <img id="product-image" src="" alt="Imagen del Producto" class="img-fluid">
+            </div>
+            <div class="col-md-6">
+                <!-- Aquí irán los detalles del producto -->
+                <h2 id="product-title">Nombre del Producto</h2>
+                <p id="product-description">Descripción del Producto</p>
+                <p id="product-price">Precio: $XX.XX</p>
+                <label for="product-quantity">Cantidad:</label>
+                <input type="number" id="product-quantity" value="1" min="1" class="form-control mb-3" style="width: 100px;">
+                <button class="btn btn-primary">Comprar Ahora</button>
+                <button class="btn btn-warning" onclick="addToCart('Nombre del Producto')">Añadir al Carrito</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="jscript.js"></script>
+</body>
+</html>
