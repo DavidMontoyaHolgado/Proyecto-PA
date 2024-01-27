@@ -1,19 +1,14 @@
 #include<iostream>
 #include<fstream>
 #include <sstream>
+#include <iomanip>
 #include "carrito.h"
 #include "../funciones/user.h"
 
 using namespace std;
 
-clsCarrito::clsCarrito(int idUsuario){idUser = idUsuario;}
-
-void clsCarrito::anadirCarrito(int IDproducto,int cantidad,float precio){
-		agregarRegistro("Carrito",idUser,IDproducto,cantidad,precio);
-		cout<<" Producto agregado al carrito : "<<endl;
-}
-
-void clsCarrito::quitarCarrito(int posCarrito){
+clsCarrito::clsCarrito(int idUsuario){
+	idUser = idUsuario;
 	ifstream archivo("../baseDatos/usuarios.txt");
 	string texto, usuario;
 	int pos =1;
@@ -30,21 +25,29 @@ void clsCarrito::quitarCarrito(int posCarrito){
 	int posI = usuario.find("(");posI++;
 	int posF = usuario.find(" ",posI);
 	usuario = usuario.substr(posI, posF-posI);
-	string ruta = "../baseDatos/registroDeCarrito/" + usuario + "_" + to_string(idUser) + ".txt";
+	//Ruta del carrito de cada usuario
+	ruta = "../baseDatos/registroDeCarrito/" + usuario + "_" + to_string(idUser) + ".txt";
+	}
 
+void clsCarrito::anadirCarrito(int IDproducto,int cantidad,float precio){
+		agregarRegistro("Carrito",idUser,IDproducto,cantidad,precio);
+		cout<<" Producto agregado al carrito : "<<endl;
+}
+
+void clsCarrito::quitarCarrito(int posCarrito){
 	//Guardamos el carrito en un arreglo
 	ifstream archivo2(ruta);
 	int n = cantRegistros(ruta);
 	string* arreglo = new string[n];
 	int i = 0;
-	texto = "";
+	string texto = "";
 	while(getline(archivo2,texto)){
 		arreglo[i] = texto;
 		i++;
 	}
 	archivo2.close();
-	posI = 0;
-	posF = 0;
+	int posI = 0;
+	int posF = 0;
 	for(int j = posCarrito-1; j < n-1;j++){
 		arreglo[j] = arreglo[j+1];
 	}
@@ -64,22 +67,41 @@ void clsCarrito::quitarCarrito(int posCarrito){
 }
  
  void clsCarrito::mostrarCarrito(){
- 	
- 	//    cout << "Carrito de compras:" << endl;
- 	//    cout<<endl<<"Nº\tProducto\tPrecio\tnCAntidad"<<endl;
-	// 			 for(int j=0;j<cantidad;j++)
-	// 			 {
-	// 			 	cout<<j+1<<"\t" \
-	// 			 	<<compras[j].nombre<<"\t\t" \
-	// 			 	<<compras[j].precio<<"\t" \
-	// 			 	<<endl;
-	// 			 }
-	// 			 cout<<endl;
- 	   
-      /* for (int i = 0; i < cantidad; i++) {
-            cout << "Nombre: " << compras[i].nombre << ", Precio: " << compras[i].precio << endl;
-        }*/
-        // cout << "Total de productos: " << cantidad << endl;
+	//Guardamos el carrito en un arreglo
+	ifstream archivo2(ruta);
+	int n = cantRegistros(ruta);
+	string* arreglo = new string[n];
+	int i = 0;
+	string texto = "";
+	while(getline(archivo2,texto)){
+		arreglo[i] = texto;
+		i++;
+	}
+	archivo2.close();
+	string nombre;
+	int num, IdProducto, cant;
+	float precio;
+	int posI =0;
+	int posF = 0;
+	texto = "";	
+	cout<<" "<<left<<setw(5)<<"N°"<<setw(45)<<"Nombre del producto"<<setw(10)<<"Cantidad"<<setw(8)<<"Precio"<<endl;
+	 	for(int j=0;j<n;j++)
+	 	{
+			istringstream stream(arreglo[j]);
+			stream >> num >> IdProducto >> cant >> precio;
+			ifstream archivo3("../baseDatos/inventario/inventarioGlobal.txt");
+			while(getline(archivo3,texto)){
+				
+				if(texto.substr(0,texto.find(" ")) == to_string(IdProducto)){
+					posI = texto.find("(");posI++;
+					posF = texto.find(")",posI);posF--;
+					nombre = texto.substr(posI, posF-posI+1);
+				}
+			}
+	 		cout<<" "<<left<<setw(5)<<j+1<<setw(49)<<nombre;
+			cout<<left <<setw(7)<<left<<cant<<setw(10)<<precio<<endl;
+	 	}
+	 	cout<<endl;
  }
 
 double clsCarrito::	calculaTotal(){
@@ -92,11 +114,14 @@ double clsCarrito::	calculaTotal(){
 	return 0.0;
 }
 
+float clsCarrito::calculaProducto(int pos){
+}
+
 
 
 int main(){
 	clsCarrito carrito(5);
-	carrito.quitarCarrito(3);
+	carrito.mostrarCarrito();
 	//carrito.anadirCarrito(20,1,800);
 	// string producto;
 	// int precio;

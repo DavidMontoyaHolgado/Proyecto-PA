@@ -14,8 +14,7 @@ class clsCarrito{
 		void quitarCarrito(int posCarrito);
 		void mostrarCarrito();
 		double calculaTotal();
-		int getCompra();
-		int getCantidad();		
+		float calculaProducto(int pos);
 };
 
 #endif
