@@ -1,4 +1,4 @@
-1 (Camisas Cuello Mao De Lino Para Hombre) 2 1 1
+1 (Camisa Cuello Mao De Lino Para Hombre) 2 1 1
 2 (Trompeta Dorada Jinbao Jbtr300) 7 4 4
 3 (Vino Tabernero Borgoña) 4 6 5
 4 (Pantalones de Mezclilla Slim Fit) 2 1 1
@@ -9,7 +9,7 @@
 9 (Consola de Videojuegos Xbox Series X) 4 6 5
 10 (Perfume Floral de Mujer) 6 3 3
 11 (Shorts Deportivos de Secado Rápido) 2 1 1
-12 (Smartphone Samsung Galaxy S21) 1 2 2
+12 (Celular Samsung Galaxy S21) 1 2 2
 13 (Set de Pinceles de Maquillaje Profesional) 6 3 3
 14 (Guitarra Acústica de Cuerdas de Acero) 7 4 4
 15 (Licor Whisky Escocés Single Malt) 4 6 5
@@ -63,7 +63,7 @@
 63 (Crema Reafirmante para el Rostro) 6 3 3
 64 (Violín Acústico de Tamaño Completo) 7 4 4
 65 (Secadora de Ropa con Tecnología de Vapor) 3 6 5
-66 (Camiseta de Manga Larga con Estampado) 2 1 1
+66 (Camisa de Manga Larga con Estampado) 2 1 1
 67 (Impresora 3D de Alta Resolución) 1 2 2
 68 (Espejo Iluminado para Maquillaje) 6 3 3
 69 (Batería para Batería Electrónica de Alta Gama) 7 4 4

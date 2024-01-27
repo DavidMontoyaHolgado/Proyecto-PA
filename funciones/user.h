@@ -16,6 +16,6 @@ string* nombres();
 string* correos();
 string* claves();
 void crearRegistro(string nombre);
-void agregarRegistroCompra(int IDuser, int IDproducto, int unidades, int gasto);
+void agregarRegistro(string CompraOCarrito, int IDuser, int IDproducto, int unidades, float gasto);
 
 #endif

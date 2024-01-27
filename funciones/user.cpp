@@ -2,6 +2,7 @@
 #include <fstream>
 #include "user.h"
 #include <string>
+#include <cctype>
 
 void agregarUsuario(string nombre,string apellido, string correo, string clave, int edad, int dni){
     ofstream archivo;
@@ -158,7 +159,7 @@ void crearRegistro(string nombre){
     archivo.close();
 }
 
-void agregarRegistroCompra(int IDuser, int IDproducto, int unidades, int gasto){
+void agregarRegistro(string CompraOCarrito, int IDuser, int IDproducto, int unidades, float gasto){
     ifstream archivo("../baseDatos/usuarios.txt");
     int pos,posI,posF;
     string leer, sub, nombre;
@@ -179,7 +180,12 @@ void agregarRegistroCompra(int IDuser, int IDproducto, int unidades, int gasto){
         cerr<<"No se encontro el usuario"<<endl;
         exit(1);
     }
-    string ruta = "../baseDatos/registroDeCompra/" + nombre + "_" + to_string(IDuser) + ".txt"; 
+    //Nos aseguramos que el nombre inicie con mayuscula y lo demás en minúscula
+    CompraOCarrito[0] = toupper(CompraOCarrito[0]);
+    for(int i = 1; i < CompraOCarrito.length();i++){
+        CompraOCarrito[i] = tolower(CompraOCarrito[i]);
+    }
+    string ruta = "../baseDatos/registroDe" + CompraOCarrito + "/" + nombre + "_" + to_string(IDuser) + ".txt"; 
     ofstream archivo2(ruta, ios::app);
     if(!archivo2.is_open()){
         cerr<<"No se pudo abrir el archivo";
@@ -187,6 +193,6 @@ void agregarRegistroCompra(int IDuser, int IDproducto, int unidades, int gasto){
     }
 
     // Registrando la compra
-    archivo2<<IDuser<<" "<<IDproducto<<" "<<unidades<<" "<<gasto<<endl;
+    archivo2<<IDuser<<" "<<IDproducto<<" "<<unidades<<" "<<gasto<<" "<<endl;
     archivo2.close();
 }

@@ -2,12 +2,12 @@
 #include<iostream>
 
 #include"clsCompra.h"
+#include "../Carrito/carrito.h"
 #include"MetodoPago.h"
 #include"formasPago.h"
+using namespace std;
 
-clsCompra::clsCompra(clsMetodoPago mPag, Carrito car, string lugEnvio, float costEnvio, clsDescuentos d)
-    : metPago(mPag), carrito(car), lugarEnvio(lugEnvio), costoEnvio(costEnvio), dtc(d)
-{}
+clsCompra::clsCompra(clsMetodoPago mPag, clsCarrito car, string lugEnvio, float costEnvio, clsDescuentos d) : metPago(mPag), carrito(car), lugarEnvio(lugEnvio), costoEnvio(costEnvio), dtc(d){}
 
     
 

@@ -9,12 +9,12 @@
 class clsCompra{
     private:
         clsMetodoPago metPago;
-        Carrito carrito;
+        clsCarrito carrito;
         string lugarEnvio;
         float costoEnvio;
         clsDescuentos dtc;
     public:
-    clsCompra(clsMetodoPago , Carrito , string,float,clsDescuentos );
+    clsCompra(clsMetodoPago , clsCarrito , string,float,clsDescuentos );
 
     bool comprar(float total);
    
