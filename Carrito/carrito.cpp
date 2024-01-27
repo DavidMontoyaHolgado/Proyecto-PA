@@ -104,24 +104,31 @@ void clsCarrito::quitarCarrito(int posCarrito){
 	 	cout<<endl;
  }
 
-double clsCarrito::	calculaTotal(){
-	
-	// double total = 0.0;
-    //     for (int i = 0; i < cantidad; i++) {
-    //         total += compras[i].precio;
-    //     }
-    //     return total;
-	return 0.0;
-}
 
 float clsCarrito::calculaProducto(int pos){
+	ifstream archivo(ruta);
+	string texto;
+	int i = 1;
+	int POS,IdProducto,cant, total;
+	float precio;
+	while(getline(archivo,texto)){
+		if(i == pos){
+			istringstream partes(texto);
+			partes>>POS>>IdProducto>>cant>>precio;
+			total = precio * cant;
+			break;
+		}
+		i++;
+	}
+	return total;
 }
 
 
 
 int main(){
 	clsCarrito carrito(5);
-	carrito.mostrarCarrito();
+	int total = carrito.calculaProducto(2);
+	cout<<total;
 	//carrito.anadirCarrito(20,1,800);
 	// string producto;
 	// int precio;

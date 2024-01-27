@@ -8,12 +8,12 @@ using namespace std;
 class clsCarrito{
 	private:
 		int idUser;
+		string ruta;
 	public:	
 		clsCarrito(int idUsuario);
 		void anadirCarrito(int IDproducto,int cantidad,float precio);
 		void quitarCarrito(int posCarrito);
 		void mostrarCarrito();
-		double calculaTotal();
 		float calculaProducto(int pos);
 };
 
