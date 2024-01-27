@@ -1,25 +1,128 @@
 <!DOCTYPE html>
 <html lang="es">
-    <header>
-        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
-            <div class="container">
-                <a class="navbar-brand mx-auto" href="#">YOBO</a>
-                <div class="search-bar mx-auto">
-                    <input class="form-control search-input" type="search" placeholder="Buscar" aria-label="Buscar">
-                    <button class="btn btn-success search-btn" type="submit">Buscar</button>
-                    <button class="btn btn-warning cart-btn" onclick="addToCart('Producto 1')">Añadir al Carrito</button>
-                </div>
-                <button class="btn btn-outline-light login-btn mx-auto" type="button">Iniciar Sesión</button>
-            </div>
-        </nav>
-        
-    </header>
 <head>
     <meta charset="UTF-8">
     <title>Detalle del Producto - YOBO</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
+
+<header>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand mx-auto" href="#">YOBO</a>
+            <div class="search-bar mx-auto">
+                <input class="form-control search-input" type="search" placeholder="Buscar" aria-label="Buscar">
+                <button class="btn btn-success search-btn" type="submit">Buscar</button>
+                <button class="btn btn-success search-btn" type="submit">Carrito</button>
+            </div>
+            <!-- Dropdown de Iniciar Sesión -->
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownLoginButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Iniciar Sesión
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownLoginButton">
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#loginModal">Iniciar Sesión</a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#registerModal">Registrarse</a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#sellerLoginModal">Iniciar Sesión como Vendedor</a>
+                  </div>
+                </div>
+                
+                <!-- Modales para Iniciar Sesión, Registrarse y Iniciar Sesión como Vendedor -->
+                <!-- Añade esto al final de tu archivo HTML antes de cerrar el body -->
+                <!-- Modal Iniciar Sesión -->
+                <!-- Modal Iniciar Sesión -->
+                <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="loginModalLabel">Iniciar Sesión</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                            <label for="loginEmail">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="loginEmail" placeholder="Ingrese su correo" required>
+                            </div>
+                            <div class="form-group">
+                            <label for="loginPassword">Contraseña</label>
+                            <input type="password" class="form-control" id="loginPassword" placeholder="Ingrese su contraseña" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                        </form>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <!-- Modal Registrarse -->
+                <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="registerModalLabel">Registrarse</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                        <form id="registerForm">
+                            <div class="form-group">
+                            <label for="registerEmail">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="registerEmail" required>
+                            </div>
+                            <div class="form-group">
+                            <label for="registerPassword">Contraseña</label>
+                            <input type="password" class="form-control" id="registerPassword" required>
+                            </div>
+                            <div class="form-group">
+                            <label for="registerFirstName">Nombres</label>
+                            <input type="text" class="form-control" id="registerFirstName" required>
+                            </div>
+                            <div class="form-group">
+                            <label for="registerLastName">Apellidos</label>
+                            <input type="text" class="form-control" id="registerLastName" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Registrarse</button>
+                        </form>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <!-- Modal Iniciar Sesión como Vendedor -->
+                <div class="modal fade" id="sellerLoginModal" tabindex="-1" role="dialog" aria-labelledby="sellerLoginModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="sellerLoginModalLabel">Iniciar Sesión como Vendedor</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                        <form id="sellerLoginForm">
+                            <div class="form-group">
+                            <label for="sellerLoginEmail">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="sellerLoginEmail" required>
+                            </div>
+                            <div class="form-group">
+                            <label for="sellerLoginPassword">Contraseña</label>
+                            <input type="password" class="form-control" id="sellerLoginPassword" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                        </form>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+        </div>
+    </nav>
+    
+</header>
+
 <body>
     <div class="container mt-4">
         <div class="row">
