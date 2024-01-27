@@ -1,0 +1,3 @@
+Producto1,Descripción del Producto1,:/imagenes/gato1.jpg,5
+Producto2,Descripción del Producto 2,:/imagenes/gato2.jpg,4
+Producto3,Descirpcion del producto 3,:/imagenes/gato3.jpg,3

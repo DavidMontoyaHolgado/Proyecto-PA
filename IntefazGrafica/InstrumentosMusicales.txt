@@ -1,4 +1,4 @@
-1 2 (Trompeta Dorada Jinbao Jbtr300) 7 4 350 Dorado 10 Jinbao (JBTR300) (Trompeta dorada para músicos avanzados) 
+1 2 (Trompeta Dorada Jinbao Jbtr300) 7 4 350 Dorado 10 Jinbao (JBTR300) (Trompeta dorada para músicos avanzados)
 2 7 (Microfono de Condensador con Soporte) 7 4 120 Negro 25 Shure (SM7B) (Micrófono de condensador para estudio)
 3 14 (Guitarra Acústica de Cuerdas de Acero) 7 4 250 Marrón 15 Fender (CD-60S) (Guitarra acústica para principiantes)
 4 29 (Saxofón Alto Plateado) 7 4 800 Plateado 5 Yamaha (YAS-280) (Saxofón alto para músicos profesionales)

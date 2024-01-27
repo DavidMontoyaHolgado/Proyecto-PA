@@ -1,4 +1,4 @@
-1 6 (Kit de Maquillaje Profesional) 6 3 50 Variado 20 (MAC) (Professional) (Set completo de maquillaje profesional) :/imagenes/3.jpg
+1 6 (Kit de Maquillaje Profesional) 6 3 50 Variado 20 (MAC) (Professional) (Set completo de maquillaje profesional)
 2 10 (Perfume Floral de Mujer) 6 3 25 Rosado 5 (Beurer) (Regenerist) (Es un perfume con olor a paisaje libre)
 3 18 (Set de Manicura y Pedicura) 6 3 25 Rosa 30 (Revlon) (Deluxe) (Kit de cuidado para uñas y manos)
 4 23 (Crema Hidratante Antienvejecimiento) 6 3 35 Blanco 40 (Olay) (Regenerist) (Crema facial para combatir el envejecimiento)

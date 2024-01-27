@@ -540,7 +540,7 @@ void MainWindow::on_pushButtonCREARCUENTA_clicked() {
 
 
 void MainWindow::loadProducts() {
-    QFile file("C:/Users/ASd/Desktop/MenuPrincipal/build-PaginaPrincipal-Desktop_Qt_6_6_1_MinGW_64_bit-Debug/productos.txt"); // Asegúrate de que la ruta sea correcta
+    QFile file(":/new/prefix1/productos.txt"); // Asegúrate de que la ruta sea correcta
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         return;
@@ -568,6 +568,7 @@ void MainWindow::loadProducts() {
             QString productName = productDetails[1].mid(1, productDetails[1].length() - 2);
             QString productDescription = productDetails[0];
             QString imagePath = productDetails[5];
+
             QString productPrice = productDetails[2];
             // Esta línea debe ir después de haber declarado y asignado valores a productName e imagePath
             productImageMap[productName] = imagePath;
@@ -590,7 +591,7 @@ void MainWindow::loadProducts() {
             productPriceMap[productName] = productPrice.toInt();
 
             // Almacenar el nombre del producto en el botón para su uso posterior
-            buttonAddToCart->setProperty("productName", productName);
+            buttonAddToCart->setProperty("productID", productDetails[0]);
 
             // Conectar el botón a su slot
             connect(buttonAddToCart, &QPushButton::clicked, this, &MainWindow::on_pushButtonAgregarCarrito_clicked);
@@ -610,8 +611,95 @@ void MainWindow::loadProducts() {
     file.close();
 }
 
-void MainWindow::on_pushButtonAgregarCarrito_clicked()
-{
+QString MainWindow::buscarInformacionProducto(const QString &productID) {
+    QStringList files = {
+        //":/new/prefix1/productos.txt",
+        ":/new/prefix1/BellezayCuidados.txt",
+        ":/new/prefix1/InstrumentosMusicales.txt",
+        ":/new/prefix1/inventarioGlobal.txt",
+        ":/new/prefix1/Joyas.txt",
 
+        ":/new/prefix1/Ropa.txt"
+        ":/new/prefix1/Tecnologia.txt",
+
+    };
+
+    QString detallesProducto;
+    for (const QString &fileName : files) {
+        QFile file(fileName);
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+            continue;
+
+        QTextStream in(&file);
+        while (!in.atEnd()) {
+            QString line = in.readLine();
+            // Extraer el ID del producto al principio de cada línea, asumiendo que el ID es seguido por un espacio
+            QString currentID = line.section(' ',1,1);
+            if (currentID == productID) {
+                detallesProducto = line; // Aquí tienes toda la línea con la información del producto
+                break;
+            }
+        }
+        file.close();
+
+        if (!detallesProducto.isEmpty())
+            break;
+    }
+
+    return detallesProducto;
 }
 
+
+void MainWindow::cargarInformacionProducto(const QString &productDetails) {
+    QStringList details = productDetails.split(QRegularExpression("\\s+|(?<=\\))|(?=\\()"));
+
+    if (details.size() < 12) return;
+
+    QString nombreProducto = details[3];  // Ajusta los índices según sea necesario
+    QString descripcion = details[11];
+    QString precio = details[6];
+    QString imagenPath = ":/imagenes";
+
+    // Actualizar interfaz de usuario
+    ui->labelNombreProducto_2->setText(nombreProducto);
+    ui->labelDescripcionPROD->setText(descripcion);
+    ui->labelPrice->setText("Precio: " + precio);
+
+    QPixmap pix(imagenPath);
+    if (!pix.isNull()) {
+        ui->labelIMGPRODC->setPixmap(pix.scaled(100, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    } // Asumiendo una ruta de imagen, ajustar según sea necesario
+
+    // Actualizar la interfaz de usuario
+
+
+    // Manejar las tallas y el stock si están presentes (en el quinto elemento, por ejemplo)
+    /*if (details.size() > 8) {
+        QString tallaStock = details.at(9);
+        tallaStock = tallaStock.mid(1, tallaStock.length() - 2); // Remueve los paréntesis
+        QStringList tallas = tallaStock.split(',');
+        // Aquí puedes procesar las tallas y el stock según sea necesario
+        // Por ejemplo, mostrarlas en la interfaz o realizar alguna otra operación
+    }*/
+}
+
+void MainWindow::on_pushButtonAgregarCarrito_clicked() {
+
+    QPushButton *boton = qobject_cast<QPushButton*>(sender());
+    if (boton) {
+        QVariant productIDVariant = boton->property("productID");
+        if (productIDVariant.isValid() && !productIDVariant.toString().isEmpty()) {
+            QString productID = productIDVariant.toString();
+            QString informacionProducto = buscarInformacionProducto(productID);
+            if (!informacionProducto.isEmpty()) {
+                cargarInformacionProducto(informacionProducto);
+            } else {
+                // Manejar el caso en que no se encontró el producto
+                qDebug() << "Producto no encontrado con ID:" << productID;
+            }
+        } else {
+            qDebug() << "El botón no tiene un 'productID' válido asociado.";
+        }
+    }
+    ui->stackedWidget->setCurrentIndex(4);
+}

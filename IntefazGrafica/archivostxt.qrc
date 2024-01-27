@@ -1,5 +1,12 @@
 <RCC>
     <qresource prefix="/new/prefix1">
         <file>usuarios.txt</file>
+        <file>BellezayCuidados.txt</file>
+        <file>InstrumentosMusicales.txt</file>
+        <file>inventarioGlobal.txt</file>
+        <file>Joyas.txt</file>
+        <file>productos.txt</file>
+        <file>Ropa.txt</file>
+        <file>Tecnologia.txt</file>
     </qresource>
 </RCC>

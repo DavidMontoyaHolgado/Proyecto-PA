@@ -23,6 +23,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void cargarInformacionProducto(const QString &productID);
+    QString buscarInformacionProducto(const QString &productID);
 
 private slots:
     void on_pushButtonYOBO_clicked();
@@ -112,6 +114,8 @@ private:
     QMap<QPushButton*, QSpinBox*> buttonToSpinBoxMap;
     QMap<QString, QString> productImageMap;
     QMap<QString, int> productPriceMap;
+
+
 
 };
 #endif // MAINWINDOW_H
