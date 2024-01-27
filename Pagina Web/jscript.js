@@ -22,3 +22,12 @@ if (window.location.pathname.includes('producto.html')) {
     loadProdu
 loadProductDetails();
 }
+$(document).ready(function(){
+    $("#loginButton").click(function(){
+      // Lógica para iniciar sesión
+    });
+    $("#registerButton").click(function(){
+      // Lógica para registrarse
+    });
+  });
+  

@@ -99,3 +99,34 @@ header .container {
     }
 }
 
+.modal-backdrop.show {
+    filter: blur(5px); /* Desenfoca el fondo */
+    z-index: 1000; /* Asegúrate de que sea menor que el z-index del modal */
+}
+
+.modal {
+    z-index: 1050; /* El z-index por defecto de Bootstrap para modales, asegúrate de que esté por encima del backdrop */
+}
+
+    
+/* Estilos para el menú desplegable */
+.dropdown-menu {
+    background-color: #ffffff; /* Fondo blanco o el color que prefieras */
+    border-radius: 1rem; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+    margin-top: 0.5rem; /* Espacio entre el botón y el menú */
+}
+
+.dropdown-item {
+    color: #333333; /* Color del texto */
+    padding: 0.75rem 1.5rem; /* Espaciado interno */
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa; /* Color de fondo al pasar el mouse */
+    color: #0056b3; /* Color del texto al pasar el mouse */
+}
+
+
+
+
