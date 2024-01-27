@@ -2,29 +2,39 @@
 #include<fstream>
 #include <iomanip>
 #include "buscador.h"
-
+#include <algorithm>
 using namespace std;
+
+void toLowercase(string& str) {
+    transform(str.begin(), str.end(), str.begin(), ::tolower);
+}
 
 clsBuscador::clsBuscador(){}
 
 // *A =producto
 void clsBuscador::buscarProducto(string producto){
-	//Poniendo el nombre del producto en minuscula
+	//Poniendo el nombre del producto en minúscula
 
-	string ruta = "../baseDatos/inventario/inventarioGlobal.txt";
-	ifstream archivo(ruta);
-	string texto;
-	int posI, posF;
-	size_t veri;
-	string _producto;
-	while(getline(archivo,texto)){
-		posI = texto.find("(");posI++;
-		posF = texto.find(")",posF);posF--;
-		_producto = texto.substr(posI,posF-posI+1).find(producto);
-		if(_producto != string::npos){
-			break;
-		}
-	}
+    string ruta = "../baseDatos/inventario/inventarioGlobal.txt";
+    ifstream archivo(ruta);
+    string texto;
+    int posI, posF;
+    size_t veri;
+    string cadena;
+
+    while(getline(archivo, texto)) {
+        posI = texto.find("("); posI++;
+        posF = texto.find(")", posI); posF--;
+        cadena = texto.substr(posI, posF - posI + 1);
+
+        // Convertir la cadena extraída a minúsculas
+        toLowercase(cadena);
+
+        if(cadena.find(producto) != string::npos) {
+            // Producto encontrado
+            break;
+        }
+    }
 	archivo.close();
 	posI = texto.find(")");
 	posI+=2;
