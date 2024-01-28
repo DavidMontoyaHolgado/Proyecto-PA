@@ -1,6 +1,7 @@
 	#include<iostream>
 	#include "login.h"
 	#include "../funciones/user.h"
+	#include "../Carrito/carrito.h"
 	using namespace std;
 
 	loginCuenta::loginCuenta(){}
@@ -8,21 +9,36 @@
 	void loginCuenta::crearCu(string nombre, string apellido, string correo, string clave, int edad, int identificacion){
 		int n = cantRegistros("../baseDatos/usuarios.txt");
 		bool cen = 0;
-		int i=0;
-		while(i<n && correos()[i]!=correo)
-			i++;
+		int i = 0;
+		while (true) {
+            // Bucle para verificar si el correo contiene el símbolo "@"
+            while (correo.find('@') == string::npos) {
+                cout << "El correo " << correo << " no es válido, debe contener '@'." << endl;
+                cout << "Ingrese su correo electrónico: ";
+                cin >> correo;
+            }
 
-		if(correos()[i]==correo)
-			cen = 1;
+            // Verificar si el correo ya existe en la base de datos
+            while (i < n && correos()[i] != correo)
+                i++;
 
-		if(cen == 1){
-			cout<<"El correo  "<<correo<<" ya existe "<<endl;
-		}else{
-			agregarUsuario(nombre,apellido,correo,clave,edad,identificacion);
-			crearRegistro(nombre);
-			cout<<"Cuenta creada exitosamente"<<endl;
-		}
-	}
+            if (correos()[i] == correo) {
+                cout << "El correo " << correo << " ya existe." << endl;
+                cout << "Ingrese otro correo electrónico: ";
+                cin >> correo;
+                i = 0; // Reiniciar el contador de búsqueda en la base de datos.
+            } else {
+                break; // Salir del bucle si el correo es válido y no existe en la base de datos.
+            }
+        }
+
+        agregarUsuario(nombre, apellido, correo, clave, edad, identificacion);
+        crearRegistro(nombre);
+        int id = cantRegistros("../baseDatos/usuarios.txt");
+        clsCarrito carrito(id);
+        cout << "Cuenta creada exitosamente" << endl;
+    }
+
 
 	void loginCuenta::iniciarSe(string correo, string clave){
 		int n = cantRegistros("../baseDatos/usuarios.txt");
