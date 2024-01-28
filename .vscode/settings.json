@@ -4,5 +4,11 @@
         "iomanip": "cpp",
         "iostream": "cpp",
         "iosfwd": "cpp"
-    }
+    },
+    "cSpell.words": [
+        "contrasena",
+        "direccion",
+        "distribucion",
+        "facturacion"
+    ]
 }

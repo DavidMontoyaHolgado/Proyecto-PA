@@ -8,7 +8,7 @@ class clsBuscador{
 		string producto;
 	public:
 		clsBuscador();
-		void buscarProducto(string);	
+		string* buscarProducto(string);	
       //void a�adirAlCarrito();	
 };
 

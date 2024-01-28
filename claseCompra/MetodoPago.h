@@ -10,7 +10,7 @@ class clsMetodoPago {
         string tipo;
 
     public:
-        clsMetodoPago(int, string);
+        clsMetodoPago(int);
         void elegirMetodoPago();
         bool realizarPago(float);
             string getTipo() const {

@@ -1,4 +1,4 @@
-1 3 (Vino Tabernero Borgoña) 4 5 30 Rojo 50 Tabernero (Borgoña) (Vino tinto de Borgoña)
+1 3 (Vino Tabernero Borgona) 4 5 30 Rojo 50 Tabernero (Borgona) (Vino tinto de Borgona)
 2 8 (Horno Microondas Digital 1000W) 3 5 150 Plateado 40 Panasonic (NN-ST676S) (Horno microondas digital de alta potencia)
 3 9 (Consola de Videojuegos Xbox Series X) 4 5 500 Negro 15 Microsoft (Xbox Series X) (Consola de videojuegos de última generación)
 4 15 (Licor Whisky Escocés Single Malt) 4 5 80 Ámbar 25 Glenfiddich (12 Years Old) (Whisky escocés single malt de 12 años)

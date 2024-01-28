@@ -2,9 +2,8 @@
 #include"formasPago.h"
 
 
-clsMetodoPago::clsMetodoPago(int sal, string tip) {
+clsMetodoPago::clsMetodoPago(int sal) {
     saldo = sal;
-    tipo = tip;
 }
 
 void clsMetodoPago::elegirMetodoPago() {

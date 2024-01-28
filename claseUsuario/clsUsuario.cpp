@@ -1,5 +1,8 @@
 #include "clsUsuario.h"
-#include "funciones/user.h"
+#include "../funciones/user.h"
+#include "../Carrito/carrito.h"
+#include "../claseCompra/clsCompra.h"
+#include "../Buscador/buscador.h"
 #include <fstream>
 #include <string>
 using namespace std;
