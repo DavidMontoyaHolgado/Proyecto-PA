@@ -11,15 +11,13 @@ void toLowercase(string& str) {
 
 clsBuscador::clsBuscador(){}
 
-// *A =producto
-string* clsBuscador::buscarProducto(string producto){
+int* clsBuscador::buscarProducto(string producto){
 	//Poniendo el nombre del producto en minúscula
 
     string ruta = "../baseDatos/inventario/inventarioGlobal.txt";
     ifstream archivo(ruta);
     string texto;
     int posI, posF;
-    size_t veri;
     string cadena;
 
     while(getline(archivo, texto)) {
@@ -65,35 +63,35 @@ string* clsBuscador::buscarProducto(string producto){
 	float precio;
 	int n,m;
 	texto= " ";
-	string* encontrado = new string[5];
+	int* encontrado = new int[5];
 	int veri = 0;
+	int x,y;
 	while(getline(archivo3,texto)){
 		posI = texto.find("(");posI++;
 		posF = texto.find(")",posF);posF--;
 		if(texto.substr(posI,posF-posI+1).find(producto) != string::npos && veri < 4){
-			encontrado[veri] = texto;
+			x = texto.find(" ");x++;
+			y = texto.find(" ",x);y--;
+			encontrado[veri] = stoi(texto.substr(x,y-x+1));
 			veri++;
 			//Para mostrar 
-			// n = texto.find("(");n++;
-			// m = texto.find(")",n);m--;
-			// nombre = texto.substr(n,m-n+1);
-			// m+=3;
-			// n = texto.find(" ",m);n++;
-			// m = texto.find(" ",n);m++;
-			// n = texto.find(" ", m);n--;
-			// precio = stoi(texto.substr(m,n-m+1));
-			// cout<<"  |"<<left<<setw(50)<<nombre<<"|"<<setw(5)<<"S/."<<precio<<"|"<<endl;
-			// cout<<"   -----------------------------------------------------------"<<endl;
+			n = texto.find("(");n++;
+			m = texto.find(")",n);m--;
+			nombre = texto.substr(n,m-n+1);
+			m+=3;
+			n = texto.find(" ",m);n++;
+			m = texto.find(" ",n);m++;
+			n = texto.find(" ", m);n--;
+			precio = stoi(texto.substr(m,n-m+1));
+			cout<<"  |"<<left<<setw(50)<<nombre<<"|"<<setw(5)<<"S/."<<precio<<"|"<<endl;
+			cout<<"   -----------------------------------------------------------"<<endl;
 		}
 	} 
 	archivo3.close();
+	return encontrado;
 }
 
-
-
 int main(){
-
 	clsBuscador buscador;
-	buscador.buscarProducto("Maquillaje");
-	return 0;
+	int* arreglo = buscador.buscarProducto("maquillaje");
 }
