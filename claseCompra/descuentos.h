@@ -3,11 +3,8 @@
 #include<iostream>
 
 class clsDescuentos {
-public:
-    clsDescuentos() {}
-
-    float calcularDescuento(float totalSinDescuento, float porcentajeDescuento) {
-        return totalSinDescuento * (1 - porcentajeDescuento);
-    }
+    public:
+        clsDescuentos() {}
+        float calcularDescuento(float totalSinDescuento);
 };
 #endif

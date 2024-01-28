@@ -8,7 +8,7 @@
 
 using namespace std;
 
-int main() {
+float clsDescuentos::calcularDescuento(float totalSinDescuento) {
     time_t now = time(0);
     tm* localTime = localtime(&now);
     string fechaActual = to_string(localTime->tm_year + 1900) + '-' +
@@ -41,9 +41,9 @@ int main() {
     }
 
     clsDescuentos descuentos;
-    float totalConDescuento = descuentos.calcularDescuento(totalSinDescuento, 1 - descuentoAcumulado);
+    float totalConDescuento = totalSinDescuento * (1 - descuentoAcumulado);
 
-    cout << "Total a pagar despues de descuentos: " << fixed << setprecision(2) << totalConDescuento << endl;
+    //cout << "Total a pagar despues de descuentos: " << fixed << setprecision(2) << totalConDescuento << endl;
 
-    return 0;
+    return totalConDescuento;
 }

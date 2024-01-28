@@ -1,6 +1,7 @@
 #ifndef METODOPAGO_H
 #define METODOPAGO_H
 #include<iostream>
+#include "descuentos.h"
 using namespace std;
 
 class clsMetodoPago {
@@ -10,7 +11,7 @@ class clsMetodoPago {
         string tipo;
 
     public:
-        clsMetodoPago(int);
+        clsMetodoPago();
         void elegirMetodoPago();
         bool realizarPago(float);
             string getTipo() const {

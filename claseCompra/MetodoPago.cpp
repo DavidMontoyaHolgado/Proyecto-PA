@@ -1,10 +1,10 @@
 #include "MetodoPago.h"  
 #include"formasPago.h"
+#include "descuentos.h"
 
+using namespace std;
 
-clsMetodoPago::clsMetodoPago(int sal) {
-    saldo = sal;
-}
+clsMetodoPago::clsMetodoPago() {}
 
 void clsMetodoPago::elegirMetodoPago() {
     char n;
@@ -15,15 +15,15 @@ void clsMetodoPago::elegirMetodoPago() {
         if(n == '1') {
             clsPaypal paypal("", "");
             paypal.leerDatos();  // Solicita al usuario ingresar datos de PayPal
-            int saldoPaypal = paypal.getSaldo();
-            cout << "Saldo actual en PayPal: $" << saldoPaypal << endl;
+            int saldo = paypal.getSaldo();
+            //cout << "Saldo actual en PayPal: $" << saldo << endl;
         }
         
         if(n == '2') {
             clsTarjeta tarjeta("", "", "", "", "");
             tarjeta.leerDatos();
-            int saldoTarjeta = tarjeta.getSaldo();
-            cout << "Saldo actual en la tarjeta: $" << saldoTarjeta << endl;
+            int saldo = tarjeta.getSaldo();
+            //cout << "Saldo actual en la tarjeta: $" << saldo << endl;
         }
     }
     else {
@@ -33,6 +33,7 @@ void clsMetodoPago::elegirMetodoPago() {
 
 bool clsMetodoPago::realizarPago(float total) {
     // Primero, verifica si hay saldo suficiente para el pago
+    
     if (saldo < total) {
         cout << "Pago fallido: Saldo insuficiente." << endl;
         return false;
