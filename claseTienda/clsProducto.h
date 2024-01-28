@@ -18,7 +18,7 @@ class clsProducto{
         clsProducto(){};
         clsProducto(int, string, float,string, string,string, int, int, string *, int*);
         clsProducto(int, string, float,string, string,string, int, int, string *, int**, string*);
-        string mostrarProducto(int idPRoducto);
+        float mostrarProducto(int idPRoducto);
 };
 
 #endif

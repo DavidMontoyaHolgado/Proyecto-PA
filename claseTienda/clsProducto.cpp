@@ -177,7 +177,7 @@ clsProducto::clsProducto(int idTienda, string nombre_Producto,float precio,strin
 }
 
 
-string clsProducto::mostrarProducto(int idPRoducto){
+float clsProducto::mostrarProducto(int idPRoducto){
     ifstream archivo1("../baseDatos/inventario/inventarioGlobal.txt");
     string texto;
     string producto;
@@ -198,6 +198,7 @@ string clsProducto::mostrarProducto(int idPRoducto){
     posI = producto.find(" ",posI);posI++;
     posF = producto.find(" ",posI);posF--;
     string ruta = producto.substr(posI,posF-posI+1);
+    int idCategoria = stoi(ruta);
     //Ruta del producto
     ifstream archivo2("../baseDatos/Categoria.txt");
     i =1;
@@ -248,55 +249,99 @@ string clsProducto::mostrarProducto(int idPRoducto){
         coloresCadena+= colores[j] + ",";
         //Guardamos el indice final de los colores
     }
-    cout<<coloresCadena<<endl;
+    
     //NOMBRE
     posI = productos[0].find("(");posI++;
     posF = productos[0].find(")");posF--;
     string nombreProducto = producto.substr(posI-2,posF-posI+1);
-
-    //STOCK
-    float stock;
-    posI = n;
-    posF = productos[0].find(" ",n);posF--;
-    stock = stof(productos[0].substr(posI,posF-posI+1));
-
-    //MARCA
-    string marca;
-    posI = productos[0].find(" ",n);posI++;
+        
+    //PRECIO
+    float Precio;
+    posI = productos[0].find(")");
+    posI+=2;
+    posI = productos[0].find(" ",posI);posI++;
+    posI = productos[0].find(" ",posI);posI++;
     posF = productos[0].find(" ",posI);posF--;
-    marca = productos[0].substr(posI,posF-posI+1);
-
-    //MODELO
-    string modelo;
-    posI = productos[0].find("(",posF);posI++;
-    posF = productos[0].find(")",posI);posF--;
-    modelo = productos[0].substr(posI,posF-posI+1);
-
-    //DESCRIPCION
-    string descripcion;
-    posI = productos[0].find("(",posF);posI++;
-    posF = productos[0].find(")",posI);posF--;
-    descripcion = productos[0].substr(posI,posF-posI+1);
+    Precio = stof(productos[0].substr(posI,posF-posI+1));
     
-    cout << " ===================================================================================" << endl;
-    cout << " |                           DATOS DEL PRODUCTO                                    |" << endl;
-    cout << " ===================================================================================" << endl;
-    cout << " | " << left << setw(20) << "Nombre:" << "| " << left << setw(57) << nombreProducto << " |" << endl;
-    cout << " | " << left << setw(20) << "Stock:" << "| " <<"S/."<< left << setw(54) <<stock << " |" << endl;
-    cout << " | " << left << setw(20) << "Marca:" << "| " << left << setw(57) << marca << " |" << endl;
-    cout << " | " << left << setw(20) << "Modelo:" << "| " << left << setw(57) << modelo << " |" << endl;
-    if(coloresCadena.find(' ') != std::string::npos){
-        cout << " | " << left << setw(20) << "Colores:" << "| " << left << setw(57) << coloresCadena << " |" << endl;
-    }else{
-        cout << " | " << left << setw(20) << "Color:" << "| " << left << setw(57) << coloresCadena << " |" << endl;
-    }
-    cout << " | " << left << setw(20) << "Descripción:" << "| " << left << setw(57) << descripcion << " |" << endl;
-    cout << " ===================================================================================" << endl;
-    return productos[0];
-}
+    if(idCategoria != 1){
 
-int main(){
-    clsProducto a;
-    cout<<a.mostrarProducto(20);
-    return 0;
+        //MARCA
+        string marca;
+        posI = productos[0].find(" ",n);posI++;
+        posF = productos[0].find(" ",posI);posF--;
+        marca = productos[0].substr(posI,posF-posI+1);
+
+        //MODELO
+        string modelo;
+        posI = productos[0].find("(",posF);posI++;
+        posF = productos[0].find(")",posI);posF--;
+        modelo = productos[0].substr(posI,posF-posI+1);
+
+        //DESCRIPCION
+        string descripcion;
+        posI = productos[0].find("(",posF);posI++;
+        posF = productos[0].find(")",posI);posF--;
+        descripcion = productos[0].substr(posI,posF-posI+1);
+        
+        cout << " ===================================================================================" << endl;
+        cout << " |                           DATOS DEL PRODUCTO                                    |" << endl;
+        cout << " ===================================================================================" << endl;
+        cout << " | " << left << setw(20) << "Nombre:" << "| " << left << setw(57) << nombreProducto << " |" << endl;
+        cout << " | " << left << setw(20) << "Precio:" << "| " <<"S/."<< left << setw(54) <<Precio << " |" << endl;
+        cout << " | " << left << setw(20) << "Marca:" << "| " << left << setw(57) << marca << " |" << endl;
+        cout << " | " << left << setw(20) << "Modelo:" << "| " << left << setw(57) << modelo << " |" << endl;
+        if(coloresCadena.find(' ') != std::string::npos){
+            cout << " | " << left << setw(20) << "Colores:" << "| " << left << setw(57) << coloresCadena << " |" << endl;
+        }else{
+            cout << " | " << left << setw(20) << "Color:" << "| " << left << setw(57) << coloresCadena << " |" << endl;
+        }
+        cout << " | " << left << setw(20) << "Descripción:" << "| " << left << setw(57) << descripcion << " |" << endl;
+        cout << " ===================================================================================" << endl;
+    }else{
+        //TALLA
+        string tallas;
+        posI = n;
+        posF = productos[0].find(" ",posI);posF--;
+        tallas = productos[0].substr(posI+1,posF-posI-1);
+        //MARCA
+        string marca;
+        posI = productos[0].find(")",posF+1);
+        posI+= 3;
+        posF = productos[0].find(" ",posI);posF--;
+        marca = productos[0].substr(posI,posF-posI);
+
+        //MODELO
+        string modelo;
+        posI = productos[0].find("(",posF);posI++;
+        posF = productos[0].find(")",posI);posF--;
+        modelo = productos[0].substr(posI,posF-posI+1);
+
+        //DESCRIPCION
+        string descripcion;
+        posI = productos[0].find("(",posF);posI++;
+        posF = productos[0].find(")",posI);posF--;
+        descripcion = productos[0].substr(posI,posF-posI+1);
+
+        cout << " ===================================================================================" << endl;
+        cout << " |                           DATOS DEL PRODUCTO                                    |" << endl;
+        cout << " ===================================================================================" << endl;
+        cout << " | " << left << setw(20) << "Nombre:" << "| " << left << setw(57) << nombreProducto << " |" << endl;
+        cout << " | " << left << setw(20) << "Precio:" << "| " <<"S/."<< left << setw(54) <<Precio << " |" << endl;
+        cout << " | " << left << setw(20) << "Marca:" << "| " << left << setw(57) << marca << " |" << endl;
+        cout << " | " << left << setw(20) << "Modelo:" << "| " << left << setw(57) << modelo << " |" << endl;
+        if(coloresCadena.find(' ') != string::npos){
+            cout << " | " << left << setw(20) << "Colores:" << "| " << left << setw(57) << coloresCadena << " |" << endl;
+        }else{
+            cout << " | " << left << setw(20) << "Color:" << "| " << left << setw(57) << coloresCadena << " |" << endl;
+        }
+        if(tallas.find(',') != string::npos){
+            cout << " | " << left << setw(20) << "Talla:" << "| " << left << setw(57) << tallas << " |" << endl;
+        }else{
+            cout << " | " << left << setw(20) << "Tallas:" << "| " << left << setw(57) << tallas << " |" << endl;
+        }
+        cout << " | " << left << setw(20) << "Descripción:" << "| " << left << setw(57) << descripcion << " |" << endl;
+        cout << " ===================================================================================" << endl;
+    }
+    return Precio;
 }
