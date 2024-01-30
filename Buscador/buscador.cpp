@@ -14,20 +14,18 @@ clsBuscador::clsBuscador(){}
 int* clsBuscador::buscarProducto(string producto){
 	//Poniendo el nombre del producto en minúscula
 
-    string ruta = "../baseDatos/inventario/inventarioGlobal.txt";
+    string ruta = "./baseDatos/inventario/inventarioGlobal.txt";
     ifstream archivo(ruta);
     string texto;
     int posI, posF;
     string cadena;
-
+	toLowercase(producto);
     while(getline(archivo, texto)) {
         posI = texto.find("("); posI++;
         posF = texto.find(")", posI); posF--;
         cadena = texto.substr(posI, posF - posI + 1);
-
         // Convertir la cadena extraída a minúsculas
         toLowercase(cadena);
-
         if(cadena.find(producto) != string::npos) {
             // Producto encontrado
             break;
@@ -39,7 +37,7 @@ int* clsBuscador::buscarProducto(string producto){
 	posI = texto.find(" ",posI),posI++;
 	posF = texto.find(" ",posI);posF--;
 	int pos = stoi(texto.substr(posI,posF-posI+1));
-	ifstream archivo2("../baseDatos/Categoria.txt");
+	ifstream archivo2("./baseDatos/Categoria.txt");
 	int i =1;
 	while(getline(archivo2,texto)){
 		if(i == pos)
@@ -57,7 +55,7 @@ int* clsBuscador::buscarProducto(string producto){
       			categoria.erase(ii, 1);
   		}
 	}
-	string ruta2 = "../baseDatos/inventario/" + categoria + ".txt";
+	string ruta2 = "./baseDatos/inventario/" + categoria + ".txt";
 	ifstream archivo3(ruta2);
 	string nombre;
 	float precio;
@@ -66,10 +64,13 @@ int* clsBuscador::buscarProducto(string producto){
 	int* encontrado = new int[5];
 	int veri = 0;
 	int x,y;
+	string lista;
 	while(getline(archivo3,texto)){
 		posI = texto.find("(");posI++;
-		posF = texto.find(")",posF);posF--;
-		if(texto.substr(posI,posF-posI+1).find(producto) != string::npos && veri < 4){
+		posF = texto.find(")",posI);posF--;
+		lista = texto.substr(posI,posF-posI+1);
+		toLowercase(lista);
+		if(lista.find(producto) != string::npos && veri < 4){
 			x = texto.find(" ");x++;
 			y = texto.find(" ",x);y--;
 			encontrado[veri] = stoi(texto.substr(x,y-x+1));
@@ -89,9 +90,4 @@ int* clsBuscador::buscarProducto(string producto){
 	} 
 	archivo3.close();
 	return encontrado;
-}
-
-int main(){
-	clsBuscador buscador;
-	int* arreglo = buscador.buscarProducto("maquillaje");
 }

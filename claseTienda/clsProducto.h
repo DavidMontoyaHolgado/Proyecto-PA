@@ -20,5 +20,5 @@ class clsProducto{
         clsProducto(int, string, float,string, string,string, int, int, string *, int**, string*);
         float mostrarProducto(int idPRoducto);
 };
-
+#include "clsProducto.cpp"
 #endif

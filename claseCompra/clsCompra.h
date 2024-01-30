@@ -1,23 +1,21 @@
 #ifndef CLSCOMPRA_H
 #define CLSCOMPRA_H
-#include<iostream>
-#include<string.h>
-#include"descuentos.h"
-#include"MetodoPago.h"
-#include"carrito.h"
+#include <iostream>
+#include <string.h>
+#include "descuentos.h"
+#include "MetodoPago.h"
 
 class clsCompra{
     private:
-        clsMetodoPago metPago;
-        clsCarrito carrito;
         string lugarEnvio;
         float costoEnvio;
-        clsDescuentos dtc;
     public:
-    clsCompra(clsMetodoPago , clsCarrito , string,float,clsDescuentos );
+    clsCompra();
+    clsCompra(string);
+    void llenarDato();
 
-    bool comprar(float total);
+    bool comprarProducto(float total);
    
 };
-
+#include "clsCompra.cpp"
 #endif

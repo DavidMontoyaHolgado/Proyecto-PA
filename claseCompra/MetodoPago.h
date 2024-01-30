@@ -7,15 +7,11 @@ using namespace std;
 class clsMetodoPago {
     protected:
         int saldo;
-    private:
-        string tipo;
 
     public:
         clsMetodoPago();
         void elegirMetodoPago();
         bool realizarPago(float);
-            string getTipo() const {
-        return tipo;
-    }
 };
+#include "MetodoPago.cpp"
 #endif

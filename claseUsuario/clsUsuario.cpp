@@ -7,12 +7,14 @@
 #include <string>
 using namespace std;
 
-clsUsuario::clsUsuario(string ID){
-    id = ID;
+clsUsuario::clsUsuario(){}
+
+void clsUsuario::agregarId(string idUsuario){
+    id = idUsuario;
 }
 
 void clsUsuario::valorarProducto(int idInventario, bool veri, int estrella){
-    string ruta = "b../baseDatos/valoracion.txt";
+    string ruta = "./baseDatos/valoracion.txt";
     if(veri == true){
         ofstream archivo;
         string texto;
@@ -30,7 +32,7 @@ void clsUsuario::valorarProducto(int idInventario, bool veri, int estrella){
 }
 
 void clsUsuario::valorarProducto(int idInventario, bool veri, int estrella, string opinion){
-    string ruta = "b../baseDatos/valoracion.txt";
+    string ruta = "./baseDatos/valoracion.txt";
     if(veri == true){
         ofstream archivo;
         string texto;

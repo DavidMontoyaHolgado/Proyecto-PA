@@ -4,7 +4,8 @@
 
 class clsDescuentos {
     public:
-        clsDescuentos() {}
+        clsDescuentos();
         float calcularDescuento(float totalSinDescuento);
 };
+#include "descuentos.cpp"
 #endif

@@ -11,9 +11,10 @@ class clsUsuario{
     private:
         string id;
     public:
-        clsUsuario(string);
+        clsUsuario();
+        void agregarId(string id);
         void valorarProducto(int ,bool, int);
         void valorarProducto(int ,bool, int, string);
 };
-
+#include "clsUsuario.cpp"
 #endif

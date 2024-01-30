@@ -13,7 +13,7 @@ clsTienda::clsTienda(){}
 clsTienda::clsTienda(string nombreT, int RUC){
     nombreTienda = nombreT;
     ruc = RUC;
-    ifstream archivo("../baseDatos/tiendas.txt");
+    ifstream archivo("./baseDatos/tiendas.txt");
     string texto, subTexto;
     int i, j;
     bool creado = false;
@@ -30,11 +30,11 @@ clsTienda::clsTienda(string nombreT, int RUC){
         } 
     } //Se añade la tienda si no existe anteriormente
     if(!creado){
-        string ruta = "../baseDatos/tiendas.txt";
+        string ruta = "./baseDatos/tiendas.txt";
         id = cantRegistros(ruta);
         id ++;
         ofstream tiendas2;
-        tiendas2.open("../baseDatos/tiendas.txt",ios::app);
+        tiendas2.open("./baseDatos/tiendas.txt",ios::app);
         tiendas2<<id<<" ("<<nombreTienda<<") "<<ruc<<endl;
         tiendas2.close();
     }
@@ -51,7 +51,7 @@ void clsTienda::agregarProductoRopa(string nombre_Producto,float precio,string d
 
 
 void clsTienda::eliminarProducto(int idProducto){
-    string urlInventario = "../baseDatos/inventario/inventarioGlobal.txt";
+    string urlInventario = "./baseDatos/inventario/inventarioGlobal.txt";
     //ELIMINANDO DEL INVENTARIO GLOBAL
     int cantidad = cantRegistros(urlInventario);
     string* arreglo = new string[cantidad];
@@ -95,7 +95,7 @@ void clsTienda::eliminarProducto(int idProducto){
     string idCategoria =to_string(dato[posDato] - '0');
     string nameCategoria;
     int m, n;
-    fstream archivo4("../baseDatos/Categoria.txt", ios::in);
+    fstream archivo4("./baseDatos/Categoria.txt", ios::in);
     while(getline(archivo4, texto)){
         if(texto.substr(0, texto.find(" ")) == idCategoria){
             m = texto.find("(");m++;
@@ -113,7 +113,7 @@ void clsTienda::eliminarProducto(int idProducto){
         }
     }
     //Hallamos la posición del producto en el inventario por categoría
-    string rutaInventCate = "../baseDatos/inventario/" + nameCategoria + ".txt";
+    string rutaInventCate = "./baseDatos/inventario/" + nameCategoria + ".txt";
     ifstream archivo5(rutaInventCate);
     string idInven, idInvenCat;
     texto = "";
@@ -149,7 +149,7 @@ void clsTienda::eliminarProducto(int idProducto){
         archivo7<<arregloCategoría[iii]<<endl;
     archivo7.close();
     //
-    ifstream archivo8("../baseDatos/inventario/incremento.txt");
+    ifstream archivo8("./baseDatos/inventario/incremento.txt");
     string* incremento = new string [7];
     i = 0;
     while(getline(archivo8,incremento[i]))
@@ -167,7 +167,7 @@ void clsTienda::eliminarProducto(int idProducto){
         }
     }
     //Sobrescribimos el archivo incremento
-    ofstream archivo9("../baseDatos/inventario/incremento.txt", ios::trunc);
+    ofstream archivo9("./baseDatos/inventario/incremento.txt", ios::trunc);
     for(int jj= 0; jj < 7;jj++)
         archivo9<<incremento[jj]<<" "<<endl;
     archivo9.close();

@@ -10,7 +10,7 @@ class clsPaypal {
         string contrasena;
 
     public:
-        clsPaypal(string, string);
+        clsPaypal();
         void leerDatos();
         int getSaldo();
 };
@@ -24,8 +24,10 @@ class clsTarjeta {
         string direccionFacturacion;
 
     public:
-        clsTarjeta(string, string, string, string, string);
+        clsTarjeta();
         void leerDatos();
         int getSaldo();
 };
+
+#include "formasPago.cpp"
 #endif

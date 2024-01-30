@@ -13,5 +13,5 @@ class loginCuenta{
 	   void iniciarSe(string correo,string clave);
 	   void cerrarSe();
 };
-
+#include "login.cpp"
 #endif

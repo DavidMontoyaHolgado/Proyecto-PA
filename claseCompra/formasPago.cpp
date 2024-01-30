@@ -1,10 +1,7 @@
 #include <regex>
 #include"formasPago.h"
-
-clsPaypal::clsPaypal(string corr, string contra) {
-    correo = corr;
-    contrasena = contra;
-}
+using namespace std;
+clsPaypal::clsPaypal() {}
 
 void clsPaypal::leerDatos() {
     bool correoValido = false;
@@ -25,19 +22,13 @@ void clsPaypal::leerDatos() {
 int clsPaypal::getSaldo() {
     random_device rd;
     mt19937 gen(rd());
-    uniform_int_distribution<int> distribucion(100, 1000);
+    uniform_int_distribution<int> distribucion(500, 1000);
     int saldo = distribucion(gen);
     return saldo;
 }
 
 
-clsTarjeta::clsTarjeta(string numT, string ven, string codS, string nombTit, string direccFac) {
-    numeroTarjeta = numT;
-    vencimiento = ven;
-    codSeguridad = codS;
-    nombreTitular = nombTit;
-    direccionFacturacion = direccFac;
-}
+clsTarjeta::clsTarjeta() {}
 
 void clsTarjeta::leerDatos() {
     bool numeroValido = false;
@@ -58,8 +49,9 @@ void clsTarjeta::leerDatos() {
     cin >> vencimiento;
     cout << "Ingresa el codigo de seguridad: ";
     cin >> codSeguridad;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
     cout << "Ingresa el nombre del titular: ";
-    cin >> nombreTitular;
+    getline(cin,nombreTitular);
     cout << "Ingresa la direccion de facturacion: ";
     cin >> direccionFacturacion;
 }
@@ -67,7 +59,7 @@ void clsTarjeta::leerDatos() {
 int clsTarjeta::getSaldo() {
     random_device rd;
     mt19937 gen(rd());
-    uniform_int_distribution<int> distribucion(100, 1000);
+    uniform_int_distribution<int> distribucion(500, 1000);
     int saldo = distribucion(gen);
     return saldo;
 }

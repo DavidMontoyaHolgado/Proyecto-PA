@@ -2,26 +2,33 @@
 #include<iostream>
 
 #include"clsCompra.h"
-#include "../Carrito/carrito.h"
 #include"MetodoPago.h"
 #include"formasPago.h"
 #include "descuentos.h"
 using namespace std;
 
-clsCompra::clsCompra(clsMetodoPago mPag, clsCarrito car, string lugEnvio, float costEnvio, clsDescuentos d) : metPago(mPag), carrito(car), lugarEnvio(lugEnvio), costoEnvio(costEnvio), dtc(d){}
+clsCompra::clsCompra(){}
 
-bool clsCompra::comprar(float total) {
+void clsCompra::llenarDato(){
+    cout << "Ingrese lugar de envio: ";
+    cin>>lugarEnvio;
+}
+
+clsCompra::clsCompra(string lugEnvio) : lugarEnvio(lugEnvio){
+    costoEnvio = 20;
+}
+
+bool clsCompra::comprarProducto(float total) {
     // Llamar al método realizarPago del objeto clsMetodoPago
+    clsMetodoPago metPago;
+    clsDescuentos dtc;
     total = dtc.calcularDescuento(total);
+    metPago.elegirMetodoPago();
     bool pagoExitoso = metPago.realizarPago(total);
 
-    if (pagoExitoso) {
-        // Realizar acciones adicionales después del pago exitoso
-        // Por ejemplo, enviar el pedido, aplicar descuentos, etc.
-        std::cout << "Compra realizada con éxito." <<endl;
-    } else {
-        std::cout << "Compra fallida. Saldo insuficiente." << endl;
-    }
+    if (!pagoExitoso) {
+        cout << "Compra fallida. Saldo insuficiente." << endl;
+    } 
 
     return pagoExitoso;
 }

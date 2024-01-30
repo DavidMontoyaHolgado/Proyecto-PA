@@ -1,5 +1,5 @@
-#include<iostream>
-#include<fstream>
+#include <iostream>
+#include <fstream>
 #include <sstream>
 #include <iomanip>
 #include "carrito.h"
@@ -7,27 +7,29 @@
 
 using namespace std;
 
-clsCarrito::clsCarrito(int idUsuario){
-	idUser = idUsuario;
-	ifstream archivo("../baseDatos/usuarios.txt");
-	string texto, usuario;
-	int pos =1;
-	//Obtenemos los datos del usuario
+clsCarrito::clsCarrito(int id){
+	idUser = id;
+	string texto;
+	int posI, posF;
+	string sub;
+	string nombre;
+	ifstream archivo("./baseDatos/usuarios.txt");
+	if(!archivo.is_open()){
+		cout<<"enserio"<<endl;
+	}
+	int i,f;
 	while(getline(archivo,texto)){
-	if(pos == idUser){
-		usuario = texto;
-		break;}
-	pos++;
+		posF = texto.find(" ");posF--;
+		sub = texto.substr(0,posF+1);
+		if(sub == to_string(id)){
+			i = texto.find("(");i++;
+			f = texto.find(" ",i);f--;
+			nombre = texto.substr(i,f-i+1);
+		}
 	}
-
-	//Obtenemos el nombre del usuario
 	archivo.close();
-	int posI = usuario.find("(");posI++;
-	int posF = usuario.find(" ",posI);
-	usuario = usuario.substr(posI, posF-posI);
-	//Ruta del carrito de cada usuario
-	ruta = "../baseDatos/registroDeCarrito/" + usuario + "_" + to_string(idUser) + ".txt";
-	}
+	ruta = "./baseDatos/registroDeCarrito/" + nombre + "_" + to_string(id) + ".txt";
+}
 
 void clsCarrito::anadirCarrito(int IDproducto,int cantidad,float precio){
 		agregarRegistro("Carrito",idUser,IDproducto,cantidad,precio);
@@ -89,7 +91,7 @@ void clsCarrito::quitarCarrito(int posCarrito){
 	 	{
 			istringstream stream(arreglo[j]);
 			stream >> num >> IdProducto >> cant >> precio;
-			ifstream archivo3("../baseDatos/inventario/inventarioGlobal.txt");
+			ifstream archivo3("./baseDatos/inventario/inventarioGlobal.txt");
 			while(getline(archivo3,texto)){
 				
 				if(texto.substr(0,texto.find(" ")) == to_string(IdProducto)){
@@ -123,74 +125,21 @@ float clsCarrito::calculaProducto(int pos){
 	return total;
 }
 
-
-
-int main(){
-	clsCarrito carrito(5);
-	int total = carrito.calculaProducto(2);
-	cout<<total;
-	//carrito.anadirCarrito(20,1,800);
-	// string producto;
-	// int precio;
-	// int quitar;
-	// int opc;
-	// Carrito carritov;
-	
-	// //int cant=0;
-	
-	
-	
-	// do{
-		
-	// 	cout<<"1. Ingresar productos. "<<endl;
-	// 	cout<<"2. Mostrar lista de productos."<<endl;
-	// 	cout<<"3. Eliminar productos"<<endl;
-	// 	cout<<"4.salir de CARRITO."<<endl;
-	// 	cout<<endl;
-	// 	cout<<"ingrese la opcion: "; cin>>opc;
-	// 	cout<<endl;
-		
-	// 	switch(opc){
-			
-	// 		case 1:
-	// 			  //cout<<endl;
-	// 			  //cout<<"ingrese la cantidad de productos : "; cin>>cant;
-	// 		         //for(int i=0;i<cant;i++){
-	// 		         	 cout<<endl;
-	// 		         	 cout<<".Producto: ";
-	// 		         	 cin>>producto;
-	// 	                 cout<<"Precio : ";
-	//                  	cin>>precio;
-	//                   	carritov.anadirCarrito(producto,precio);
-	// 				 //}
-	// 		          cout<<endl;
-	
-    //               	 carritov.mostrarCarrito();
-	//                   cout << "Total de la compra: $" << carritov.calculaTotal() << endl;
-	//                   cout<<endl;
-	// 		      break;
-			
-	// 		case 2:
-	// 		       carritov.mostrarCarrito();
-	// 			   cout << "Total de la compra: $" << carritov.calculaTotal() << endl;
-	// 			   cout<<endl;    
-	//               break;
-			
-	// 		case 3:	  
-	// 		         cout<<"Ingrese numero de producto a eliminar: "; cin>>quitar;
-	
-    //                 carritov.quitarCarrito(quitar);
-    //                 cout<<endl;
-	// 		       break;
-	// 		 case 4:
-	// 		 	 break;
-			 		
-	// 	}
-		
-		
-		
-		
-	// }while(opc!=4);
-
-	return 0;
+int clsCarrito::getIdProducto(int pos){
+	ifstream archivo(ruta);
+	string texto;
+	int posI,posF;
+	string sub;
+	string id;
+	int x,y;
+	while(getline(archivo,texto)){
+		posF = texto.find(" ");
+		sub = texto.substr(0,posF);
+		if(sub == to_string(pos)){
+			x = texto.find(" ");x++;
+			y = texto.find(" ",x);y--;
+			id= texto.substr(x,y-x+1);
+		}
+	}
+	return stoi(id);
 }

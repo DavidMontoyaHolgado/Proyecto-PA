@@ -1,5 +1,6 @@
 	#include<iostream>
 	#include "login.h"
+	#include <string>
 	#include "../funciones/user.h"
 	#include "../Carrito/carrito.h"
 	using namespace std;
@@ -7,7 +8,7 @@
 	loginCuenta::loginCuenta(){}
 
 	void loginCuenta::crearCu(string nombre, string apellido, string correo, string clave, int edad, int identificacion){
-		int n = cantRegistros("../baseDatos/usuarios.txt");
+		int n = cantRegistros("./baseDatos/usuarios.txt");
 		bool cen = 0;
 		int i = 0;
 		while (true) {
@@ -19,10 +20,10 @@
             }
 
             // Verificar si el correo ya existe en la base de datos
-            while (i < n && correos()[i] != correo)
+            while (i < n && Correos()[i] != correo)
                 i++;
 
-            if (correos()[i] == correo) {
+            if (Correos()[i] == correo) {
                 cout << "El correo " << correo << " ya existe." << endl;
                 cout << "Ingrese otro correo electrónico: ";
                 cin >> correo;
@@ -34,21 +35,22 @@
 
         agregarUsuario(nombre, apellido, correo, clave, edad, identificacion);
         crearRegistro(nombre);
-        int id = cantRegistros("../baseDatos/usuarios.txt");
-        clsCarrito carrito(id);
+        int id = n+1;;
         cout << "Cuenta creada exitosamente" << endl;
     }
 
 
 	void loginCuenta::iniciarSe(string correo, string clave){
-		int n = cantRegistros("../baseDatos/usuarios.txt");
+		int n = cantRegistros("./baseDatos/usuarios.txt");
 		int pos=0;
 		int i=0;
 		bool cen=0;
-		
-		while(i<n && correos()[i]!=correo)
+		while(i<n){
+			if(Correos()[i] == correo){
+				break;
+			}
 			i++;
-		
+		}
 		if(claves()[i]==clave){
 			cen = 1;
 		}
@@ -65,4 +67,5 @@
 		cout<<"MUCHAS GRACIAS POR VISITARNOS "<<endl;;
 		cout<<endl;
 	}
+
 

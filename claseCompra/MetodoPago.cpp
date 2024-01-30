@@ -8,22 +8,23 @@ clsMetodoPago::clsMetodoPago() {}
 
 void clsMetodoPago::elegirMetodoPago() {
     char n;
+    cout<<"\nMetodos de Pago:"<<endl;
     cout << "Desea pagar por Paypal escriba 1, si es por tarjeta escriba 2: ";
     cin >> n;
 
     if((n == '1') || (n == '2')) {
         if(n == '1') {
-            clsPaypal paypal("", "");
+            clsPaypal paypal;
             paypal.leerDatos();  // Solicita al usuario ingresar datos de PayPal
-            int saldo = paypal.getSaldo();
-            //cout << "Saldo actual en PayPal: $" << saldo << endl;
+            saldo = paypal.getSaldo();
+            // cout << "Saldo actual en PayPal: $" << saldo << endl;
         }
         
         if(n == '2') {
-            clsTarjeta tarjeta("", "", "", "", "");
+            clsTarjeta tarjeta;
             tarjeta.leerDatos();
-            int saldo = tarjeta.getSaldo();
-            //cout << "Saldo actual en la tarjeta: $" << saldo << endl;
+            saldo = tarjeta.getSaldo();
+            // cout << "Saldo actual en la tarjeta: $" << saldo << endl;
         }
     }
     else {
@@ -33,12 +34,9 @@ void clsMetodoPago::elegirMetodoPago() {
 
 bool clsMetodoPago::realizarPago(float total) {
     // Primero, verifica si hay saldo suficiente para el pago
-    
     if (saldo < total) {
-        cout << "Pago fallido: Saldo insuficiente." << endl;
         return false;
     }
     saldo -= total;  // Descuenta el total del saldo
-    cout << "Pago realizado con éxito. Saldo restante: " << saldo << endl;
     return true;
 }

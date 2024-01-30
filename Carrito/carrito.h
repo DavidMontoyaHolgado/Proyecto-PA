@@ -10,12 +10,14 @@ class clsCarrito{
 		int idUser;
 		string ruta;
 	public:	
-		clsCarrito(int idUsuario);
+		clsCarrito(int id);
 		void anadirCarrito(int IDproducto,int cantidad,float precio);
 		void quitarCarrito(int posCarrito);
+		int getIdProducto(int);
 		void mostrarCarrito();
 		float calculaProducto(int pos);
 };
 
+#include "carrito.cpp"
 #endif
 

@@ -15,6 +15,13 @@ int cantValores(string* arreglo){
     return cant;
 }
 
+string enMinuscula(string palabra){
+    for(int i = 0; i < palabra.length();i++){
+        palabra[i] =  tolower(palabra[i]);
+    }
+    return palabra;
+}
+
 clsProducto::clsProducto(int idTienda, string nombre_Producto,float precio,string descripcion,string marca, string modelo, int idCategoria, int idSubCategoria,string* coloresP, int* stock){
     //Dando valora  las propiedades
     int cantColorP = cantValores(coloresP);
@@ -27,8 +34,8 @@ clsProducto::clsProducto(int idTienda, string nombre_Producto,float precio,strin
     }
 
     //Se agrega el producto al inventario global
-    ofstream archivo("../baseDatos/inventario/inventarioGlobal.txt", ios::app);
-    int ID = cantRegistros("../baseDatos/inventario/inventarioGlobal.txt");
+    ofstream archivo("./baseDatos/inventario/inventarioGlobal.txt", ios::app);
+    int ID = cantRegistros("./baseDatos/inventario/inventarioGlobal.txt");
     if(!archivo.is_open()){
         cerr<<"Error: No se pudo abrir el archivo "<<endl;
     }
@@ -37,7 +44,7 @@ clsProducto::clsProducto(int idTienda, string nombre_Producto,float precio,strin
 
     //Para el inventario por categoría
     ifstream archivo1;
-    archivo1.open("../baseDatos/Categoria.txt");
+    archivo1.open("./baseDatos/Categoria.txt");
     string texto;
     int ini, fin;
         //Buscando el nombre de la categoría con el idCategoría
@@ -62,7 +69,7 @@ clsProducto::clsProducto(int idTienda, string nombre_Producto,float precio,strin
         }
     }
         //Llenando datos en la categoría del producto
-    nombreCategoria = "../baseDatos/inventario/"+ nombreCategoria + ".txt";
+    nombreCategoria = "./baseDatos/inventario/"+ nombreCategoria + ".txt";
     int cant = cantRegistros(nombreCategoria);
     int j = 1;
     int cantInventCategoria;
@@ -96,8 +103,8 @@ clsProducto::clsProducto(int idTienda, string nombre_Producto,float precio,strin
     }
 
     //Se agrega el producto al inventario global
-    int ID = cantRegistros("../baseDatos/inventario/inventarioGlobal.txt");
-    ofstream archivo("../baseDatos/inventario/inventarioGlobal.txt", ios::app);
+    int ID = cantRegistros("./baseDatos/inventario/inventarioGlobal.txt");
+    ofstream archivo("./baseDatos/inventario/inventarioGlobal.txt", ios::app);
     if(!archivo.is_open()){
         cerr<<"Error: No se pudo abrir el archivo "<<endl;
     }
@@ -106,7 +113,7 @@ clsProducto::clsProducto(int idTienda, string nombre_Producto,float precio,strin
 
     //Para el inventario por categoría
     ifstream archivo1;
-    archivo1.open("../baseDatos/Categoria.txt");
+    archivo1.open("./baseDatos/Categoria.txt");
     string texto;
     int ini, fin;
         //Hallamos el nombre de la categoría a base del idCategoría
@@ -132,13 +139,13 @@ clsProducto::clsProducto(int idTienda, string nombre_Producto,float precio,strin
     }
     archivo1.close();
         //Llenando datos en la categoría del producto
-    nombreCategoria = "../baseDatos/inventario/"+ nombreCategoria + ".txt";
+    nombreCategoria = "./baseDatos/inventario/"+ nombreCategoria + ".txt";
     int cant = cantRegistros(nombreCategoria);
     if(cant != 0){
         string leer;
         int m = 1;
         string pos;
-        ifstream archivo2("../baseDatos/inventario/Ropa.txt");
+        ifstream archivo2("./baseDatos/inventario/Ropa.txt");
         //Comparamos 
         while(getline(archivo2,leer)){
             if(m == cant){
@@ -146,8 +153,8 @@ clsProducto::clsProducto(int idTienda, string nombre_Producto,float precio,strin
             }
             m++;
         }
-        cant = stoi(pos);
         archivo2.close();
+        cant = stoi(pos);
     }
     
         //Creamos un arreglo de stocks por tallas separas por una ","
@@ -177,8 +184,10 @@ clsProducto::clsProducto(int idTienda, string nombre_Producto,float precio,strin
 }
 
 
+
+
 float clsProducto::mostrarProducto(int idPRoducto){
-    ifstream archivo1("../baseDatos/inventario/inventarioGlobal.txt");
+    ifstream archivo1("./baseDatos/inventario/inventarioGlobal.txt");
     string texto;
     string producto;
     int i = 1;
@@ -200,7 +209,7 @@ float clsProducto::mostrarProducto(int idPRoducto){
     string ruta = producto.substr(posI,posF-posI+1);
     int idCategoria = stoi(ruta);
     //Ruta del producto
-    ifstream archivo2("../baseDatos/Categoria.txt");
+    ifstream archivo2("./baseDatos/Categoria.txt");
     i =1;
     string categoria;
     //Encontrando el nombre del producto
@@ -214,21 +223,31 @@ float clsProducto::mostrarProducto(int idPRoducto){
         i++;
     }
     archivo2.close();
+
+    for (int w = 0; w < categoria.length(); w++) {
+        if (categoria[w] == ' ') {
+        categoria.erase(w, 1);
+        }
+    }
+
     //Agarrando los productos con el mismo ID
-    ruta = "../baseDatos/inventario/" + categoria + ".txt";
+    ruta = "./baseDatos/inventario/" + categoria + ".txt";
     ifstream archivo3(ruta);
     string productos[5];
     i = 0;
+    string productoTxt;
     while(getline(archivo3,texto)){
         posI = texto.find("(");posI++;
         posF = texto.find(")", posI);
-        if(texto.substr(posI,posF-posI) == producto.substr(producto.find("(")+1,producto.find(")")-producto.find("(")-1)){
+        productoTxt = producto.substr(producto.find("(")+1,producto.find(")")-producto.find("(")-1);
+        if(enMinuscula(texto.substr(posI,posF-posI)) == enMinuscula(productoTxt)){
             productos[i] = texto;
             i++;
+            break;
         }
     }
+
     //CONSEGUIMOS LOS DATOS DEL PRODUCTO
-    
     //COLORES
     string colores[5];
     int n;
@@ -249,7 +268,6 @@ float clsProducto::mostrarProducto(int idPRoducto){
         coloresCadena+= colores[j] + ",";
         //Guardamos el indice final de los colores
     }
-    
     //NOMBRE
     posI = productos[0].find("(");posI++;
     posF = productos[0].find(")");posF--;
@@ -263,7 +281,6 @@ float clsProducto::mostrarProducto(int idPRoducto){
     posI = productos[0].find(" ",posI);posI++;
     posF = productos[0].find(" ",posI);posF--;
     Precio = stof(productos[0].substr(posI,posF-posI+1));
-    
     if(idCategoria != 1){
 
         //MARCA

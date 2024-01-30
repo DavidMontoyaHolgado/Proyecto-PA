@@ -1,3 +1,5 @@
+#ifndef BUSCADO_H
+#define BUSCADO_H
 #include<iostream>
 #include<fstream>
 
@@ -11,4 +13,5 @@ class clsBuscador{
 		int* buscarProducto(string);	
       //void a�adirAlCarrito();	
 };
-
+#include "buscador.cpp"
+#endif
