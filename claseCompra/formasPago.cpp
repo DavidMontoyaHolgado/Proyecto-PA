@@ -62,6 +62,7 @@ void clsTarjeta::leerDatos() {
     cin >> nombreTitular;
     cout << "Ingresa la direccion de facturacion: ";
     cin >> direccionFacturacion;
+    cout<<endl;
 }
 
 int clsTarjeta::getSaldo() {
