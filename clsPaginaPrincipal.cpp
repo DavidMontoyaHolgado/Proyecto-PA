@@ -31,7 +31,7 @@ int main(){
 	float precio;
 	int idUsuario;
 
-
+	int opcion2;
 	//Valores para crear Producto
 	string nombreProducto, descripcion, marca, modelo;
 		do{
@@ -46,7 +46,7 @@ int main(){
 			if (sesionIniciada && correo.find("@zofratacna") != string::npos) {
 				cout << "6. Agregar Producto (Solo para zofratacna)" << endl;
 			}
-        cout << "Ingrese una opción: ";
+        cout << "Ingrese una opcion: ";
         cin >> opcion;
 		if(cin.fail()){
 			cout<<"Opcion invalido. Debe ingresar una opcion valida\n"<<endl;
@@ -205,9 +205,15 @@ int main(){
 	 					cout << "2. Comprar Producto del Carrito" << endl;
 	 					cout << "3. Salir" << endl;
 	 					cout << "Ingrese una opcion: ";
-	 					cin >> opcion;
+	 					cin >> opcion2;
+						if(cin.fail()){
+							cout<<"Opcion invalido. Debe ingresar una opcion valida\n"<<endl;
+							cin.clear();
+							cin.ignore(1000,'\n');
+									}
 						clsCompra compra;
-	 					switch(opcion) {
+						
+	 					switch(opcion2) {
 	 						case 1: // Eliminar Producto
 	 							int posP;
 	 							cout << "Ingrese la posicion del producto a eliminar: ";
@@ -225,6 +231,7 @@ int main(){
 									carrito.quitarCarrito(posP);
 	 									// VALORANDO EL PRODUCTO
 	 									bool deseaValorar;
+										bool deseaOpinar;
 	 									cout << "¿Desea valorar el producto? 1: Si, 0: No: ";
 	 									cin >> deseaValorar;
 										if(cin.fail()){
@@ -232,15 +239,14 @@ int main(){
 											cin.clear();
 											cin.ignore(1000,'\n');
 											opcion = -1;
-											Sleep(200);
 											continue;
 										}
 	 									if (deseaValorar) {
 	 										cout << "Ingrese la cantidad de estrellas (1 a 5): ";
 	 										cin >> estrellas;
-	 										cout << "Â¿Desea agregar una opinion? 1: Si, 0: No: ";
-	 										cin >> deseaValorar;
-	 										if (deseaValorar) {
+	 										cout << "Desea agregar una opinion? 1: Si, 0: No: ";
+	 										cin >> deseaOpinar;
+	 										if (deseaOpinar) {
 	 											cout << "Ingrese su opinion: ";
 	 											cin.ignore();
 	 											getline(cin, opinion);
@@ -255,12 +261,12 @@ int main(){
 	 							break;
 	 						case 3:
 	 							cout << "Saliendo del menÃº del carrito." << endl;
-	 							opcion = 4;
+	 							opcion2 = 4;
 								break;
 	 						default:
 	 							cout << "Opcion no valida." << endl;
 	 					}
-	 				} while (opcion != 4);
+	 				} while (opcion2 != 4);
                  } else {
                      cout << "Debe iniciar sesion para ver el carrito." << endl;
                  }

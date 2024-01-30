@@ -1,6 +1,0 @@
-1  2
-2  4 Es de muy buena calidad, lo que falla es el tiempo de envio
-3 20 3 good
-4 20 3 good
-5 20 3 good
-6 10 3 de lo mjoer

@@ -133,13 +133,15 @@ int clsCarrito::getIdProducto(int pos){
 	string id;
 	int x,y;
 	while(getline(archivo,texto)){
-		posF = texto.find(" ");
+		posF = texto.find(" ");posF++;
 		sub = texto.substr(0,posF);
+		cout<<sub<<endl;
 		if(sub == to_string(pos)){
 			x = texto.find(" ");x++;
 			y = texto.find(" ",x);y--;
 			id= texto.substr(x,y-x+1);
 		}
 	}
+	cout<<id<<endl;
 	return stoi(id);
 }
